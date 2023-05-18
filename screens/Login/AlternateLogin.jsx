@@ -53,6 +53,15 @@ const App = ({navigation}) => {
       <TouchableOpacity style={styles.continueButton} onPress={() => navigation.navigate('General Info')}>
         <Text style={styles.continueButtonText}>Continue</Text>
       </ TouchableOpacity>
+      <View style={styles.bottomBox}>
+
+      <Text style={styles.subbuttonheader} onPress={() => navigation.navigate('OTP Verification Screen')}>
+        Back to OTP
+      </Text>
+      <Text style={styles.subbuttonheader} onPress={() => navigation.navigate('Forgot Password')}>
+        Forgot Password?
+      </Text>
+      </View>
     </SafeAreaView>
   );
 };
@@ -102,6 +111,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginTop: 10,
   },
+  subbuttonheader: {
+    fontSize: 16,
+    marginVertical: 10,
+    textAlign: "center",
+    color: "#82919E",
+  },
   formInput: {
     backgroundColor: '#FFFFFF',
     borderRadius: 5,
@@ -143,6 +158,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center'
   },
+  bottomBox: {
+    display: "flex",
+    flexDirection: "row",
+    width: "80%",
+    justifyContent: "space-between"
+  }
 });
 
 export default App;

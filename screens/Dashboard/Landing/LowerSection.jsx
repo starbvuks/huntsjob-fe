@@ -13,6 +13,10 @@ const LowerSection = () => {
       <View style={styles.container}>
         <Text style={styles.subheading}>Companies Actively Hiring:</Text>
         <JobPostings />
+        <JobPostings />
+        <JobPostings />
+        <JobPostings />
+        <JobPostings />
       </View>
   );
 };

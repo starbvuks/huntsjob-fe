@@ -211,48 +211,56 @@ import {
   Text,
   TextInput,
   View,
+  StatusBar,
 } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 import RNPickerSelect from "react-native-picker-select";
-import DocumentPicker from "react-native-document-picker";
+import * as DocumentPicker from "expo-document-picker";
+import * as FileSystem from "expo-file-system";
 
 const GeneralInfoScreen = ({ navigation }) => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [domesticExperience, setdomesticExperience] = useState("");
+  const [abroadExperience, setabroadExperience] = useState("");
   const [nationality, setNationality] = useState("India");
   const [resume, setResume] = useState(null);
+  const [resumeButtonText, setResumeButtonText] = useState("Upload Resume");
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] =
     useState(false);
 
-  async function pickDocument() {
+  const pickDocument = async () => {
     try {
-      const result = await DocumentPicker.pick({
-        type: [DocumentPicker.types.allFiles],
+      const result = await DocumentPicker.getDocumentAsync({
+        type: ["application/pdf", "application/msword", "text/plain"],
       });
-      console.log(
-        "Picked document: ",
-        result.uri,
-        result.type, // mime type
-        result.name,
-        result.size
-      );
-    } catch (err) {
-      if (DocumentPicker.isCancel(err)) {
-        // User cancelled the picker
-        console.log("User cancelled the picker");
-      } else {
-        // Handle other errors
-        console.error("Error picking document:", err);
-      }
-    }
-  }
 
+      if (result.type === "success") {
+        setResume(result.uri);
+        // const fileInfo = await FileSystem.getInfoAsync(result.uri);
+        const fileInfo = result.name;
+        setResumeButtonText(fileInfo);
+        console.log(fileInfo);
+      }
+    } catch (error) {
+      console.log("Error picking document", error);
+    }
+  };
+  
   const handleSubmit = () => {
-    // Perform form validation and submit data to the backend
-    // Replace with your actual backend integration
+    console.log("Full Name: ", fullName);
+    console.log("Email: ", email);
+    console.log("Password: ", password);
+    console.log("Confirm Password: ", confirmPassword);
+    console.log("Domestic Experience: ", domesticExperience);
+    console.log("Abroad Experience: ", abroadExperience);
+    console.log("Nationality: ", nationality);
+    console.log("Resume: ", resume);
+
+    navigation.navigate("Notification Selection");
   };
 
   return (
@@ -315,6 +323,28 @@ const GeneralInfoScreen = ({ navigation }) => {
           </View>
         </View>
         <View>
+          <Text style={styles.subheading}>Domestic Work Experience</Text>
+          <TextInput
+            style={styles.phoneInput}
+            multiline
+            minHeight={90}
+            placeholder="Describe your role in detail"
+            onChangeText={setdomesticExperience}
+            value={domesticExperience}
+          />
+        </View>
+        <View>
+          <Text style={styles.subheading}>Abroad Work Experience</Text>
+          <TextInput
+            style={styles.phoneInput}
+            multiline
+            minHeight={90}
+            placeholder="Describe your role in detail"
+            onChangeText={setabroadExperience}
+            value={abroadExperience}
+          />
+        </View>
+        <View>
           <Text style={styles.subheading}>Nationality</Text>
           <RNPickerSelect
             style={customPickerStyles}
@@ -333,8 +363,10 @@ const GeneralInfoScreen = ({ navigation }) => {
             onPress={pickDocument}
             style={styles.buttonContainer}
           >
-            <Text style={styles.buttonText}>Upload Resume</Text>
+            <Text style={styles.buttonText}>{resumeButtonText}</Text>
           </TouchableOpacity>
+          {/* <Button title="Upload Resume" onPress={pickDocument} /> */}
+
           <Text style={styles.uploadInfo}>
             {" "}
             DOC, DOCx, PDF, RTF, Recruiters give first preference to candidates
@@ -342,7 +374,10 @@ const GeneralInfoScreen = ({ navigation }) => {
           </Text>
         </View>
       </View>
-      <TouchableOpacity style={styles.continueButton} onPress={() => navigation.navigate("Creation Success")}>
+      <TouchableOpacity
+        style={styles.continueButton}
+        onPress={() => handleSubmit()}
+      >
         <Text style={styles.continueButtonText}>Continue</Text>
       </TouchableOpacity>
     </ScrollView>
@@ -351,9 +386,10 @@ const GeneralInfoScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    padding: 10,
-    margin: 30,
+    width: "100%",
+    height: "100%",
+    padding: 30,
+    backgroundColor: "#FFFFFF"
   },
   headerRow: {
     flex: 1,
@@ -417,7 +453,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
     paddingVertical: 10,
     borderRadius: 5,
-    marginVertical: 40,
+    marginTop: 40,
+    marginBottom: 100,
     width: "100%",
   },
   continueButtonText: {
@@ -445,11 +482,9 @@ const customPickerStyles = StyleSheet.create({
     borderWidth: 2,
     borderRadius: 5,
     fontSize: 14,
-    paddingHorizontal: 10,
-    paddingVertical: 8,
-    borderWidth: 1,
-    borderColor: "blue",
-    borderRadius: 8,
+    fontFamily: "NunitoSans_400Regular",
+    paddingVertical: 10,
+    paddingHorizontal: 12,
     color: "black",
     paddingRight: 30, // to ensure the text is never behind the icon
   },

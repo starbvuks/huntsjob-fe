@@ -1,67 +1,38 @@
-import React, { useState } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  TextInput,
-  TouchableOpacity,
-  Button,
-} from "react-native";
+import React from "react";
+import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
-import {
-  useFonts,
-  NunitoSans_200ExtraLight,
-  NunitoSans_400Regular,
-  NunitoSans_700Bold,
-  NunitoSans_800ExtraBold,
-  NunitoSans_900Black,
-} from "@expo-google-fonts/nunito-sans";
-import AppLoading from "expo-app-loading";
 
-const LoginScreen = ({ navigation }) => {   
-  let [fontsLoaded] = useFonts({
-    NunitoSans_200ExtraLight,
-    NunitoSans_400Regular,
-    NunitoSans_700Bold,
-    NunitoSans_800ExtraBold,
-    NunitoSans_900Black,
-  });
+import * as SplashScreen from "expo-splash-screen";
+SplashScreen.preventAutoHideAsync();
 
-  if (!fontsLoaded) {
-    return <AppLoading />;
-  } else {
-    return (
-      <View style={styles.container}>
+const LoginScreen = ({ navigation }) => {
+  return (
+    <View style={styles.container}>
+      <Image
+        source={require("../../assets/huntsjob-logo.png")}
+        style={styles.logo}
+      />
+
+      <View style={styles.imageContainer}>
         <Image
-          source={require("../../assets/huntsjob-logo.png")}
-          style={styles.logo}
+          source={require("../../assets/account-created.png")}
+          style={styles.image}
         />
+      </View>
 
-        <View style={styles.imageContainer}>
-          <Image
-            source={require("../../assets/account-created.png")}
-            style={styles.image}
-          />
-        </View>
+      <Text style={styles.header}>Account Creation{"\n"}Successful!</Text>
 
-        <Text style={styles.header}>Account Creation{'\n'}Successful!</Text>
-
-        <View style={styles.continueContainer}>
-
-        <Text style={styles.subheader}>
-          Continue to the dashboard
-        </Text>
+      <View style={styles.continueContainer}>
+        <Text style={styles.subheader}>Continue to the dashboard</Text>
         <TouchableOpacity
           style={styles.continueButton}
           onPress={() => navigation.navigate("Bottom Navigator")}
-          >
-           <Icon name="arrow-right" size={32} style={styles.backIcon} />
+        >
+          <Icon name="arrow-right" size={32} style={styles.backIcon} />
         </TouchableOpacity>
-            </View>
       </View>
-    );
-  }
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
@@ -76,7 +47,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     position: "absolute",
     top: 55,
-    left: 10
+    left: 10,
   },
   imageContainer: {
     width: "100%",
@@ -100,15 +71,15 @@ const styles = StyleSheet.create({
   continueContainer: {
     display: "flex",
     flexDirection: "row",
-    width: '100%',
+    width: "100%",
     alignItems: "center",
     alignContent: "center",
-    gap: 25
+    gap: 25,
   },
   subheader: {
     fontSize: 18,
     marginVertical: 25,
-    paddingTop:2,
+    paddingTop: 2,
     alignSelf: "flex-start",
     fontFamily: "NunitoSans_400Regular",
   },
@@ -125,6 +96,5 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
 });
-
 
 export default LoginScreen;

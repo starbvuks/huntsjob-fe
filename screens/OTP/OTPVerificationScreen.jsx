@@ -8,29 +8,14 @@ import {
   TouchableOpacity,
 } from "react-native";
 import OTPInput from "../../components/OTPInput";
+import otpAuthHelper from "../../models/otpAuthHelper";
 
-const OTPVerificationScreen = ({navigation}) => {
-//   const [OTP, setOTP] = useState(["", "", "", ""]);
-  const [timer, setTimer] = useState(60);
-
-  useEffect(() => {
-    if (timer > 0) {
-      const countdown = setTimeout(() => {
-        setTimer(timer - 1);
-      }, 1000);
-      return () => clearTimeout(countdown);
-    }
-  }, [timer]);
+const OTPVerificationScreen = ({ navigation }) => {
+  const [timer, setTimer] = otpAuthHelper.useCountdownTimer(60);
 
   const handleResendOTP = () => {
-    // Handle resend OTP logic
-    console.log("Resending OTP...");
-    setTimer(60);
-  };
-
-  const handleAlternativeLogin = () => {
-    // Handle alternative login method logic
-    console.log("Trying alternative login method...");
+    // Replace "phoneNumber" with the actual phone number
+    otpAuthHelper.handleResendOTP(phoneNumber, setTimer);
   };
 
   return (
@@ -53,16 +38,18 @@ const OTPVerificationScreen = ({navigation}) => {
         disabled={timer > 0}
         style={styles.buttonContainer}
       >
-        <Text style={styles.buttonText}>Resend OTP</Text>
-        {timer > 0 && <Text style={styles.buttonText}>{timer}s</Text>}
+        <Text style={styles.buttonText}>Resend OTP </Text>
+        {timer > 0 && <Text style={styles.buttonText}>({timer}s)</Text>}
       </TouchableOpacity>
 
-      <Text style={styles.subbuttonheader} onPress={() => navigation.navigate('Alternate Login')}>
+      <Text
+        style={styles.subbuttonheader}
+        onPress={() => navigation.navigate("Alternate Login")}
+      >
         Try other login method
       </Text>
 
-      <TouchableOpacity style={styles.continueButton} onPress={() =>
-        navigation.navigate('General Info')}>
+      <TouchableOpacity style={styles.continueButton}>
         <Text style={styles.continueButtonText}>Continue</Text>
       </TouchableOpacity>
     </View>
@@ -88,7 +75,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     position: "absolute",
     top: 55,
-    left: 10
+    left: 10,
   },
   header: {
     fontSize: 24,
@@ -120,9 +107,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#FF5C35",
     paddingVertical: 10,
     borderRadius: 5,
-    marginVertical: 20,
-    position: "absolute",
-    bottom: 75,
+    marginVertical: 150,
     width: "100%",
   },
   continueButtonText: {

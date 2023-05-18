@@ -10,8 +10,10 @@ import {
 } from "react-native";
 import RNPickerSelect from "react-native-picker-select";
 import Icon from "react-native-vector-icons/FontAwesome";
+import authModel from "../../models/authModel";
 import {
   useFonts,
+  NunitoSans_200ExtraLight,
   NunitoSans_400Regular,
   NunitoSans_700Bold,
   NunitoSans_800ExtraBold,
@@ -19,21 +21,35 @@ import {
 } from "@expo-google-fonts/nunito-sans";
 import AppLoading from "expo-app-loading";
 
+import * as SplashScreen from "expo-splash-screen";
+SplashScreen.preventAutoHideAsync();
+
 const LoginScreen = ({ navigation }) => {
   const [countryCode, setCountryCode] = useState("+91");
   const [phoneNumber, setPhoneNumber] = useState("");
 
   let [fontsLoaded] = useFonts({
+    NunitoSans_200ExtraLight,
     NunitoSans_400Regular,
     NunitoSans_700Bold,
     NunitoSans_800ExtraBold,
     NunitoSans_900Black,
   });
 
-  const handleSubmit = () => {
-    // Handle form submission
-    console.log(`Country code: \${countryCode}, Phone number: \${phoneNumber}`);
+
+  const handlePhoneNumberChange = (text) => {
+    // Remove all non-digit characters from the input
+    const cleanedText = text.replace(/\D/g, "");
+    // Split the input into groups of 5 digits or less
+    const groups = cleanedText.match(/.{1,5}/g) || [];
+    // Join the groups with a space between each group
+    const formattedText = groups.join(" ");
+    // Limit the input to a maximum of 10 digits
+    const truncatedText = formattedText.slice(0, 12);
+
+    setPhoneNumber(truncatedText);
   };
+
 
   if (!fontsLoaded) {
     return <AppLoading />;
@@ -75,20 +91,21 @@ const LoginScreen = ({ navigation }) => {
             style={styles.phoneInput}
             keyboardType="phone-pad"
             placeholder="Phone Number"
-            onChangeText={(text) => setPhoneNumber(text)}
+            onChangeText={handlePhoneNumberChange}
             value={phoneNumber}
+            maxLength={12}
           />
         </View>
 
         <Text style={styles.subbuttonheader}>Or Sign in with</Text>
 
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity style={styles.button} onPress={() => authModel.googleLogin}>
             <Icon name="google" size={20} color="#FF5C35" />
             <Text style={styles.buttonText}>Google</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity style={styles.button} onPress={() => authModel.facebookLogin}>
             <Icon name="facebook" size={20} color="#FF5C35" />
             <Text style={styles.buttonText}>Facebook</Text>
           </TouchableOpacity>
@@ -96,7 +113,7 @@ const LoginScreen = ({ navigation }) => {
 
         <TouchableOpacity
           style={styles.continueButton}
-          onPress={() => navigation.navigate("OTP Verification Screen")}
+          onPress={() => authModel.regularLogin(1234567891, navigation)}
         >
           <Text style={styles.continueButtonText}>Continue</Text>
         </TouchableOpacity>
@@ -212,13 +229,11 @@ const customPickerStyles = StyleSheet.create({
   },
   inputAndroid: {
     fontSize: 14,
-    paddingHorizontal: 10,
-    paddingVertical: 8,
-    borderWidth: 1,
-    borderColor: "blue",
-    borderRadius: 8,
+    fontFamily: "NunitoSans_400Regular",
+    paddingVertical: 10,
+    paddingHorizontal: 12,
     color: "black",
-    paddingRight: 30, // to ensure the text is never behind the icon
+    paddingRight: 30,  // to ensure the text is never behind the icon
   },
 });
 

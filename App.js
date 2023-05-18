@@ -1,6 +1,9 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, StatusBar } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import {
+  createStackNavigator,
+  TransitionPresets,
+} from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import MatIcon from "react-native-vector-icons/MaterialCommunityIcons";
@@ -9,10 +12,13 @@ import * as SplashScreen from "expo-splash-screen";
 SplashScreen.preventAutoHideAsync();
 
 import Login from "./screens/Login/Login";
+// import Login from "./screens/Login/Login2";
 import AlternateLogin from "./screens/Login/AlternateLogin";
 import OTPVerificationScreen from "./screens/OTP/OTPVerificationScreen";
 import GeneralInfo from "./screens/Login/Generallnfo";
 import CreationSuccess from "./screens/Login/CreationSuccess";
+import ForgotPassword from "./screens/Login/ForgotPassword";
+import NotificationSelection from "./screens/Login/NotificationSelection";
 // import BottomNav from "./components/BottomNav";
 import Landing from "./screens/Dashboard/Landing/Landing";
 import Suggestions from "./screens/Dashboard/Suggestion";
@@ -20,8 +26,40 @@ import Applied from "./screens/Dashboard/Applied";
 import Saved from "./screens/Dashboard/Saved";
 import Profile from "./screens/Dashboard/Profile";
 
-const Stack = createNativeStackNavigator();
+const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
+
+const customSlideFromRightIOS = {
+  ...TransitionPresets.SlideFromRightIOS,
+  transitionSpec: {
+    open: {
+      animation: "timing",
+      config: {
+        duration: 180,
+      },
+    },
+    close: {
+      animation: "timing",
+      config: {
+        duration: 180,
+      },
+    },
+  },
+  cardStyleInterpolator: ({ current, layouts }) => {
+    return {
+      cardStyle: {
+        transform: [
+          {
+            translateX: current.progress.interpolate({
+              inputRange: [0, 1],
+              outputRange: [layouts.screen.width, 0],
+            }),
+          },
+        ],
+      },
+    };
+  },
+};
 
 const tabBarIcon = (name, color) => {
   return <MatIcon name={name} size={24} color={color} />;
@@ -31,8 +69,10 @@ const BottomNav = () => {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
-        tabBarStyle:{
-          height: '10%'
+        tabBarStyle: {
+          height: 90, // increase the height of the navigation bar
+          paddingTop: 12, // add some vertical padding between the icons and labels
+          paddingBottom: 12,
         },
         tabBarIcon: ({ focused, color }) => {
           let iconName;
@@ -54,6 +94,10 @@ const BottomNav = () => {
               break;
           }
           return tabBarIcon(iconName, color);
+        },
+        tabBarLabelStyle: {
+          fontSize: 12, // decrease the font size of the labels
+          marginBottom: 24, // add some vertical padding below the labels
         },
       })}
       tabBarOptions={{
@@ -93,30 +137,30 @@ const BottomNav = () => {
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Alternate Login" component={AlternateLogin} />
-        <Stack.Screen
-          name="OTP Verification Screen"
-          component={OTPVerificationScreen}
-        />
-        <Stack.Screen name="General Info" component={GeneralInfo} />
-        <Stack.Screen name="Creation Success" component={CreationSuccess} />
-        <Stack.Screen
-          name="Bottom Navigator"
-          component={BottomNav}
-          options={{ headerShown: false }}
-        />
-      </Stack.Navigator>
+        <Stack.Navigator
+          screenOptions={{ headerShown: false, ...customSlideFromRightIOS }}
+        >
+          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="Alternate Login" component={AlternateLogin} />
+          <Stack.Screen
+            name="OTP Verification Screen"
+            component={OTPVerificationScreen}
+          />
+          <Stack.Screen name="Forgot Password" component={ForgotPassword} />
+          <Stack.Screen name="General Info" component={GeneralInfo} />
+          <Stack.Screen
+            name="Notification Selection"
+            component={NotificationSelection}
+          />
+          <Stack.Screen name="Creation Success" component={CreationSuccess} />
+          <Stack.Screen
+            name="Bottom Navigator"
+            component={BottomNav}
+            options={{ headerShown: false }}
+          />
+        </Stack.Navigator>
     </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#FFFFFF",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
+

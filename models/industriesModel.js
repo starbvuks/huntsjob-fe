@@ -7,5 +7,5 @@ export const fetchIndustries = async () => {
     //   console.error('Error fetching industries:', error);
     //   return null;
     // }
-  };
+};
   

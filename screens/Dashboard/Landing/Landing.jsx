@@ -10,7 +10,10 @@ import {
 import Icon from "react-native-vector-icons/Ionicons";
 import Icon2 from "react-native-vector-icons/FontAwesome5";
 
+import { fetchIndustries } from "../../../models/industriesModel.js"
+
 import LowerSection from "./LowerSection";
+import ProfileReminder from "../../../components/Modals/ProfileReminder.jsx";
 
 const Dashboard = () => {
   const userName = "John Doe";
@@ -22,7 +25,13 @@ const Dashboard = () => {
       if (fetchedIndustries && fetchedIndustries.length > 0) {
         setIndustries(fetchedIndustries.slice(0, 5));
       } else {
-        setIndustries(["Substation", "Software", "Electrical", "Civil", "Management"]);
+        setIndustries([
+          "Substation",
+          "Software",
+          "Electrical",
+          "Civil",
+          "Management",
+        ]);
       }
     };
     fetchData();
@@ -35,18 +44,14 @@ const Dashboard = () => {
           <Text style={styles.header}>Hello, {userName}</Text>
           <Icon name="notifications-outline" size={30} />
         </View>
-
+        {/* <ProfileReminder /> */}
         <View style={styles.searchContainer}>
           <View style={styles.searchBar}>
             <TextInput style={styles.search} placeholder="Search" />
             <Icon name="search" size={24} style={styles.searchButton} />
           </View>
           <View style={styles.settingsContainer}>
-            <Icon2
-              name="sliders-h"
-              size={24}
-              style={styles.settingsButton}
-            />
+            <Icon2 name="sliders-h" size={24} style={styles.settingsButton} />
           </View>
         </View>
 
@@ -59,14 +64,14 @@ const Dashboard = () => {
         </Text>
 
         <View style={styles.industryButtonContainer}>
-      {industries.map((industry, index) => (
-        <View key={index} style={styles.industryButton}>
-          <TouchableOpacity>
-            <Text style={styles.industryButtonText}>{industry}</Text>
-          </TouchableOpacity>
+          {industries.map((industry, index) => (
+            <View key={index} style={styles.industryButton}>
+              <TouchableOpacity>
+                <Text style={styles.industryButtonText}>{industry}</Text>
+              </TouchableOpacity>
+            </View>
+          ))}
         </View>
-      ))}
-    </View>
       </View>
 
       <LowerSection />
@@ -79,6 +84,7 @@ export default Dashboard;
 const styles = StyleSheet.create({
   container: {
     height: "100%",
+    top: 0
   },
   topContainer: {
     padding: 20,
@@ -90,8 +96,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     width: "100%",
-    marginTop: 60,
-    marginBottom: 20,
+    marginVertical: 20,
   },
   header: {
     fontSize: 24,
@@ -138,8 +143,8 @@ const styles = StyleSheet.create({
     color: "#2E475D",
     fontFamily: "NunitoSans_800ExtraBold",
     marginTop: 10,
-},
-subheader: {
+  },
+  subheader: {
     fontSize: 16,
     marginTop: 10,
     marginBottom: 25,

@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { View, TextInput, StyleSheet, TouchableOpacity, Text } from 'react-native';
+import otpAuthHelper from '../models/otpAuthHelper';
 
 const OTPInput = () => {
   const inputRefs = useRef([null, null, null, null]);
@@ -16,20 +17,7 @@ const OTPInput = () => {
   };
 
   const handleVerifyOTP = () => {
-    const otp = otpValues.join('');
-    console.log('OTP:', otp);
-
-    // TODO: Call your backend API to verify the OTP
-    // Example:
-    // api.verifyOTP(otp)
-    //   .then(response => {
-    //     if (response.success) {
-    //       // OTP verification successful
-    //     } else {
-    //       // OTP verification failed
-    //     }
-    //   });
-    // rxjs or dependency injection
+    otpAuthHelper.handleVerifyOTP(otpValues);
   };
 
   return (
