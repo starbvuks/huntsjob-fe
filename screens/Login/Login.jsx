@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -6,11 +6,14 @@ import {
   Image,
   TextInput,
   TouchableOpacity,
-  Button,
 } from "react-native";
 import RNPickerSelect from "react-native-picker-select";
+import DropDownPicker from "react-native-dropdown-picker";
 import Icon from "react-native-vector-icons/FontAwesome";
+
 import authModel from "../../models/authModel";
+import getCountryCodes from "../../models/countryCodeModel";
+
 import {
   useFonts,
   NunitoSans_200ExtraLight,
@@ -25,6 +28,7 @@ import * as SplashScreen from "expo-splash-screen";
 SplashScreen.preventAutoHideAsync();
 
 const LoginScreen = ({ navigation }) => {
+  const [countryCodes, setCountryCodes] = useState([]);
   const [countryCode, setCountryCode] = useState("+91");
   const [phoneNumber, setPhoneNumber] = useState("");
 
@@ -36,6 +40,13 @@ const LoginScreen = ({ navigation }) => {
     NunitoSans_900Black,
   });
 
+  useEffect(() => {
+    const fetchCountryCodes = async () => {
+      const data = await getCountryCodes();
+      setCountryCodes(data);
+    };
+    fetchCountryCodes();
+  }, []);
 
   const handlePhoneNumberChange = (text) => {
     // Remove all non-digit characters from the input
@@ -49,7 +60,6 @@ const LoginScreen = ({ navigation }) => {
 
     setPhoneNumber(truncatedText);
   };
-
 
   if (!fontsLoaded) {
     return <AppLoading />;
@@ -76,16 +86,11 @@ const LoginScreen = ({ navigation }) => {
 
         <View style={styles.phoneContainer}>
           <RNPickerSelect
-            style={customPickerStyles}
-            value={countryCode}
-            onValueChange={(value) => setCountryCode(value)}
-            items={[
-              { label: "US (+1)", value: "+1" },
-              { label: "UK (+44)", value: "+44" },
-              { label: "Germany (+49)", value: "+49" },
-              { label: "India (+91)", value: "+91" },
-              // ... Add more country codes
-            ]}
+              style={customPickerStyles}
+              value={countryCode}
+              onValueChange={(label) => {setCountryCode(label), console.log(label)}}
+              items={countryCodes}
+              useNativeAndroidPickerStyle={true}
           />
           <TextInput
             style={styles.phoneInput}
@@ -100,12 +105,18 @@ const LoginScreen = ({ navigation }) => {
         <Text style={styles.subbuttonheader}>Or Sign in with</Text>
 
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button} onPress={() => authModel.googleLogin}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => authModel.googleLogin}
+          >
             <Icon name="google" size={20} color="#FF5C35" />
             <Text style={styles.buttonText}>Google</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.button} onPress={() => authModel.facebookLogin}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => authModel.facebookLogin}
+          >
             <Icon name="facebook" size={20} color="#FF5C35" />
             <Text style={styles.buttonText}>Facebook</Text>
           </TouchableOpacity>
@@ -113,7 +124,9 @@ const LoginScreen = ({ navigation }) => {
 
         <TouchableOpacity
           style={styles.continueButton}
-          onPress={() => authModel.regularLogin(1234567891, navigation)}
+          onPress={() =>
+            authModel.regularLogin(phoneNumber, countryCode, navigation)
+          }
         >
           <Text style={styles.continueButtonText}>Continue</Text>
         </TouchableOpacity>
@@ -134,7 +147,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     position: "absolute",
     top: 55,
-    left: 10
+    left: 10,
   },
   imageContainer: {
     width: "100%",
@@ -233,7 +246,7 @@ const customPickerStyles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 12,
     color: "black",
-    paddingRight: 30,  // to ensure the text is never behind the icon
+    paddingRight: 30, // to ensure the text is never behind the icon
   },
 });
 

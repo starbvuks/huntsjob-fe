@@ -10,7 +10,9 @@ import {
 import OTPInput from "../../components/OTPInput";
 import otpAuthHelper from "../../models/otpAuthHelper";
 
-const OTPVerificationScreen = ({ navigation }) => {
+const OTPVerificationScreen = ({ navigation, route }) => {
+  const { phoneNumber } = route.params;
+  const { countryCode } = route.params;
   const [timer, setTimer] = otpAuthHelper.useCountdownTimer(60);
 
   const handleResendOTP = () => {
@@ -27,7 +29,7 @@ const OTPVerificationScreen = ({ navigation }) => {
 
       <Text style={styles.header}>OTP Verification</Text>
       <Text style={styles.subheader}>
-        An OTP (One-Time Password) has been sent to +91 xxxxx xxxxx. Please
+        An OTP (One-Time Password) has been sent to +{countryCode} {phoneNumber}. Please
         enter the OTP for verification process.
       </Text>
 
@@ -49,7 +51,7 @@ const OTPVerificationScreen = ({ navigation }) => {
         Try other login method
       </Text>
 
-      <TouchableOpacity style={styles.continueButton}>
+      <TouchableOpacity style={styles.continueButton} onPress={() => navigation.navigate("General Info")}>
         <Text style={styles.continueButtonText}>Continue</Text>
       </TouchableOpacity>
     </View>

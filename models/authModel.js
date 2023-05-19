@@ -3,7 +3,7 @@ const authModel = {
     try {
       // Google login code
       if (user) {
-        navigation.navigate("Next Screen");
+        navigation.navigate("OTP Verification Screen");
       }
     } catch (error) {
       console.log(error);
@@ -13,16 +13,16 @@ const authModel = {
     try {
       // Facebook login code
       if (user) {
-        navigation.navigate("Next Screen");
+        navigation.navigate("OTP Verification Screen");
       }
     } catch (error) {
       console.log(error);
     }
   },
-  regularLogin: async (phoneNumber, navigation) => {
+  regularLogin: async (phoneNumber, countryCode, navigation) => {
     try {
       // post phoneNumber to backend
-      navigation.navigate("OTP Verification Screen");
+      navigation.navigate("OTP Verification Screen", {phoneNumber, countryCode});
     } catch (error) {
       console.log(error);
     }
