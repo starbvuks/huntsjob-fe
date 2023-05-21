@@ -1,208 +1,3 @@
-// import React, { useState } from "react";
-// import {
-//   View,
-//   Text,
-//   TextInput,
-//   TouchableOpacity,
-//   StyleSheet,
-//   ScrollView,
-// } from "react-native";
-// import RNPickerSelect from "react-native-picker-select";
-// import Icon from "react-native-vector-icons/FontAwesome";
-
-// const GeneralInfo = ({ navigation }) => {
-//   const [passwordVisible, setPasswordVisible] = useState(false);
-
-//   return (
-//     <View style={styles.container}>
-//       <View style={styles.header}>
-//         <TouchableOpacity
-//           onPress={() => navigation.navigate('OTP Verification Screen')}
-//           style={styles.backArrowContainer}
-//         >
-//           <Icon name="arrow-left" size={20} />
-//         </TouchableOpacity>
-//         <Text style={styles.backArrowText}>General Info</Text>
-//       </View>
-
-//       <ScrollView style={styles.formContainer} showsScrollIndicator={false}>
-//         {[
-//           "Full Name",
-//           "Email ID",
-//           "Mobile No",
-//           "Password",
-//           "Confirm Password",
-//           "Current Position",
-//           "Current Position Description",
-//           "Overseas/Abroad Experience",
-//         ].map((label, index) => (
-//           <View key={index} style={styles.formField}>
-//             <Text style={styles.formLabel}>{label}</Text>
-//             <TextInput
-//               style={styles.formInput}
-//               secureTextEntry={label === "Password" && !passwordVisible}
-//               placeholder={label}
-//             />
-//             {label === "Password" && (
-//               <TouchableOpacity
-//                 onPress={() => setPasswordVisible(!passwordVisible)}
-//                 style={styles.showPasswordIcon}
-//               >
-//                 <Icon name={passwordVisible ? "eye" : "eye-slash"} size={18} />
-//               </TouchableOpacity>
-//             )}
-//           </View>
-//         ))}
-
-//         <View style={styles.formField}>
-//           <Text style={styles.formLabel}>Nationality</Text>
-//           <RNPickerSelect
-//             style={customPickerStyles}
-//             // value={countryCode}
-//             // onValueChange={(value) => setCountryCode(value)}
-//             items={[
-//               { label: "Select Nationality", value: "" },
-//               { label: "United States", value: "US" },
-//               { label: "United Kingdom", value: "UK" },
-//               { label: "India", value: "IN" },
-//               // ... Add more country codes
-//             ]}
-//           />
-//         </View>
-
-//         <View style={styles.formField}>
-//           <Text style={styles.formLabel}>Current Location</Text>
-//           <TextInput style={styles.formInput} placeholder="Current Location" />
-//         </View>
-//         <TouchableOpacity style={styles.uploadButton}>
-//           <Text style={styles.uploadButtonText}>Upload Resume</Text>
-//         </TouchableOpacity>
-//         <Text style={styles.uploadInfo}>
-//           DOC, DOCx, PDF, RTF, Recruiters give first preference to candidates
-//           who have a resume. Max 5MB
-//         </Text>
-
-//         <TouchableOpacity style={styles.continueButton}>
-//           <Text style={styles.continueButtonText}>Continue</Text>
-//         </TouchableOpacity>
-//       </ScrollView>
-//     </View>
-//   );
-// };
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     alignItems: "center",
-//     justifyContent: "flex-start",
-//     padding: 20,
-//     backgroundColor: "#FFFFFF",
-//   },
-//   header: {
-//     marginTop: 50,
-//     marginBottom: 30,
-//     gap: 10,
-//     display: "flex",
-//     flexDirection: "row",
-
-//     alignSelf: "flex-start",
-//   },
-//   backArrowContainer: {
-//     flexDirection: "row",
-//     alignItems: "center",
-//     alignSelf: "flex-start",
-//   },
-//   backArrowText: {
-//     marginLeft: 5,
-//     fontSize: 18,
-//     fontWeight: "bold",
-//   },
-//   formContainer: {
-//     alignSelf: "stretch",
-//     marginBottom: 20,
-//   },
-//   formField: {
-//     marginBottom: 30,
-//   },
-//   formLabel: {
-//     fontSize: 16,
-//     fontWeight: "bold",
-//   },
-//   formInput: {
-//     borderWidth: 1,
-//     borderColor: "#D5DADF",
-//     paddingHorizontal: 10,
-//     paddingVertical: 10,
-//     borderRadius: 3,
-//     marginTop: 5,
-//   },
-//   showPasswordIcon: {
-//     position: "absolute",
-//     top: 35,
-//     right: 10,
-//   },
-//   formPicker: {
-//     borderWidth: 1,
-//     borderColor: "#D5DADF",
-//     borderRadius: 3,
-//     marginTop: 5,
-//   },
-//   uploadButton: {
-//     borderWidth: 1,
-//     borderColor: "#D5DADF",
-//     paddingHorizontal: 10,
-//     paddingVertical: 5,
-//     borderRadius: 3,
-//     justifyContent: "center",
-//     alignItems: "center",
-//     marginTop: 5,
-//   },
-//   uploadButtonText: {
-//     fontSize: 14,
-//     fontWeight: "bold",
-//   },
-//   uploadInfo: {
-//     fontSize: 12,
-//     textAlign: "center",
-//     marginTop: 10,
-//   },
-//   continueButton: {
-//     backgroundColor: "#FF5C35",
-//     paddingHorizontal: 30,
-//     paddingVertical: 10,
-//     borderRadius: 5,
-//     marginVertical: 20,
-//     width: "100%",
-//   },
-//   continueButtonText: {
-//     color: "#fff",
-//     fontSize: 18,
-//     fontWeight: "bold",
-//     textAlign: "center",
-//   },
-// });
-
-// const customPickerStyles = StyleSheet.create({
-//   inputIOS: {
-//     borderWidth: 1,
-//     borderColor: "#D5DADF",
-//     paddingHorizontal: 10,
-//     paddingVertical: 5,
-//     borderRadius: 3,
-//     marginTop: 5,
-//   },
-//   inputAndroid: {
-//     borderWidth: 1,
-//     borderColor: "#D5DADF",
-//     paddingHorizontal: 10,
-//     paddingVertical: 5,
-//     borderRadius: 3,
-//     marginTop: 5,
-//   },
-// });
-
-// export default GeneralInfo;
-
 import React, { useState } from "react";
 import {
   ScrollView,
@@ -211,12 +6,11 @@ import {
   Text,
   TextInput,
   View,
-  StatusBar,
 } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 import RNPickerSelect from "react-native-picker-select";
 import * as DocumentPicker from "expo-document-picker";
-import * as FileSystem from "expo-file-system";
+import DateTimePicker from "@react-native-community/datetimepicker";
 
 const GeneralInfoScreen = ({ navigation }) => {
   const [fullName, setFullName] = useState("");
@@ -231,6 +25,44 @@ const GeneralInfoScreen = ({ navigation }) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] =
     useState(false);
+
+  const [showDatePicker, setShowDatePicker] = useState(false);
+  const [selectedType, setSelectedType] = useState("");
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [dates, setDates] = useState({
+    domesticStartDate: null,
+    domesticEndDate: null,
+    abroadStartDate: null,
+    abroadEndDate: null,
+  });
+
+  const showPicker = (type) => {
+    setSelectedType(type);
+    setShowDatePicker(true);
+  };
+
+  const hidePicker = () => {
+    setShowDatePicker(false);
+  };
+
+  const handleConfirm = (date) => {
+    setSelectedDate(date);
+    setDates((prevDates) => ({ ...prevDates, [selectedType]: date }));
+    hidePicker();
+  };
+
+  // const [date, setDate] = useState(new Date());
+  // const [show, setShow] = useState(false);
+
+  // const onChange = (event, selectedDate) => {
+  //   const currentDate = selectedDate || date;
+  //   setShow(Platform.OS === "ios");
+  //   setDate(currentDate);
+  // };
+
+  // const showPicker = () => {
+  //   setShow(true);
+  // };
 
   const pickDocument = async () => {
     try {
@@ -249,7 +81,7 @@ const GeneralInfoScreen = ({ navigation }) => {
       console.log("Error picking document", error);
     }
   };
-  
+
   const handleSubmit = () => {
     console.log("Full Name: ", fullName);
     console.log("Email: ", email);
@@ -266,14 +98,13 @@ const GeneralInfoScreen = ({ navigation }) => {
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       <View style={styles.headerRow}>
-        <TouchableOpacity
-          onPress={() => navigation.navigate("OTP Verification Screen")}
-        >
+        <TouchableOpacity onPress={() => navigation.navigate("Login")}>
           <Icon name="arrow-back" size={32} style={styles.backIcon} />
         </TouchableOpacity>
         <Text style={styles.header}>General Info</Text>
       </View>
       <View style={styles.formContainer}>
+        <Text style={styles.enterDetails}>Enter your details</Text>
         <View>
           <Text style={styles.subheading}>Full Name</Text>
           <TextInput
@@ -323,25 +154,48 @@ const GeneralInfoScreen = ({ navigation }) => {
           </View>
         </View>
         <View>
-          <Text style={styles.subheading}>Domestic Work Experience</Text>
-          <TextInput
-            style={styles.phoneInput}
-            multiline
-            minHeight={90}
-            placeholder="Describe your role in detail"
-            onChangeText={setdomesticExperience}
-            value={domesticExperience}
-          />
-        </View>
-        <View>
-          <Text style={styles.subheading}>Abroad Work Experience</Text>
-          <TextInput
-            style={styles.phoneInput}
-            multiline
-            minHeight={90}
-            placeholder="Describe your role in detail"
-            onChangeText={setabroadExperience}
-            value={abroadExperience}
+          <View>
+            <Text style={styles.subheading}>Domestic Work Experience</Text>
+            <View style={styles.dateContainer}>
+              <TouchableOpacity
+                onPress={() => showPicker("domesticStartDate")}
+                style={styles.dateButton}
+              >
+                <Text style={styles.dateButtonText}>Start Date</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => showPicker("domesticEndDate")}
+                style={styles.dateButton}
+              >
+                <Text style={styles.dateButtonText}>Start Date</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+          <View>
+            <Text style={styles.subheading}>Abroad Work Experience</Text>
+            <View style={styles.dateContainer}>
+              <TouchableOpacity
+                onPress={() => showPicker("domesticStartDate")}
+                style={styles.dateButton}
+              >
+                <Text style={styles.dateButtonText}>Start Date</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => showPicker("domesticEndDate")}
+                style={styles.dateButton}
+              >
+                <Text style={styles.dateButtonText}>Start Date</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+          <DateTimePicker
+            value={selectedDate}
+            isVisible={showDatePicker}
+            mode="date"
+            display="spinner"
+            onConfirm={handleConfirm}
+            onCancel={hidePicker}
+            dateFormat="MM-yyyy"
           />
         </View>
         <View>
@@ -373,13 +227,13 @@ const GeneralInfoScreen = ({ navigation }) => {
             who have a resume. Max 5MB
           </Text>
         </View>
+        <TouchableOpacity
+          style={styles.continueButton}
+          onPress={() => handleSubmit()}
+        >
+          <Text style={styles.continueButtonText}>Continue</Text>
+        </TouchableOpacity>
       </View>
-      <TouchableOpacity
-        style={styles.continueButton}
-        onPress={() => handleSubmit()}
-      >
-        <Text style={styles.continueButtonText}>Continue</Text>
-      </TouchableOpacity>
     </ScrollView>
   );
 };
@@ -388,13 +242,14 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
     height: "100%",
-    padding: 30,
-    backgroundColor: "#FFFFFF"
+    flex: 1,
+    backgroundColor: "#FFFFFF",
   },
   headerRow: {
     flex: 1,
     gap: 8,
     marginVertical: 20,
+    padding: 30,
     flexDirection: "column",
     alignItems: "flex-start",
   },
@@ -402,11 +257,20 @@ const styles = StyleSheet.create({
     fontSize: 34,
     fontWeight: "bold",
   },
+  enterDetails: {
+    fontSize: 25,
+    fontFamily: "NunitoSans_800ExtraBold",
+    color: "#FFFFFF",
+  },
   formContainer: {
     flex: 1,
     flexDirection: "column",
-    marginVertical: 20,
-    gap: 20,
+    marginVtOP: 20,
+    gap: 30,
+    backgroundColor: "#4A051C",
+    padding: 30,
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
   },
   phoneContainer: {
     flexDirection: "row",
@@ -414,28 +278,28 @@ const styles = StyleSheet.create({
     position: "relative",
   },
   subheading: {
-    fontSize: 16,
-    fontWeight: "bold",
+    fontSize: 14,
     marginBottom: 10,
+    fontFamily: "NunitoSans_700Bold",
+    color: "#FFFFFF",
   },
   passwordContainer: {
     flex: 1,
   },
   phoneInput: {
     flex: 1,
-    padding: 10,
-    borderColor: "#D5DADF",
-    borderWidth: 1,
+    padding: 12,
+    backgroundColor: "#FFFFFF",
     borderRadius: 5,
+    fontFamily: "NunitoSans_400Regular",
   },
   iconContainer: {
     position: "absolute",
     right: 10,
-    bottom: 8,
+    bottom: 10,
   },
   buttonContainer: {
-    borderWidth: 1,
-    borderColor: "#D5DADF",
+    backgroundColor: "#FFFFFF",
     paddingHorizontal: 10,
     paddingVertical: 10,
     borderRadius: 3,
@@ -443,22 +307,35 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 5,
   },
+  dateContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  dateButton: {
+    padding: 15,
+    backgroundColor: "#FFFFFF",
+    borderRadius: 5,
+    width: "50%",
+  },
+  dateButtonText: {
+    fontFamily: "NunitoSans_400Regular",
+  },
   uploadInfo: {
     fontSize: 12,
     textAlign: "center",
     marginTop: 10,
+    color: "#FFFFFF",
   },
   continueButton: {
-    backgroundColor: "#FF5C35",
+    backgroundColor: "#FFFFFF",
     paddingHorizontal: 30,
-    paddingVertical: 10,
+    paddingVertical: 12,
     borderRadius: 5,
-    marginTop: 40,
-    marginBottom: 100,
+    marginVertical: 40,
     width: "100%",
   },
   continueButtonText: {
-    color: "#fff",
+    color: "#ED8200",
     fontSize: 16,
     fontWeight: "bold",
     textAlign: "center",
@@ -478,7 +355,7 @@ const customPickerStyles = StyleSheet.create({
     paddingRight: 30, // to ensure the text is never behind the icon
   },
   inputAndroid: {
-    borderColor: "#D5DADF",
+    backgroundColor: "#FFFFFF",
     borderWidth: 2,
     borderRadius: 5,
     fontSize: 14,

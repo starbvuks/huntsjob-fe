@@ -10,7 +10,7 @@ import {
 import Icon from "react-native-vector-icons/Ionicons";
 import Icon2 from "react-native-vector-icons/FontAwesome5";
 
-import { fetchIndustries } from "../../../models/industriesModel.js"
+import { fetchIndustries } from "../../../models/industriesModel.js";
 
 import LowerSection from "./LowerSection";
 import ProfileReminder from "../../../components/Modals/ProfileReminder.jsx";
@@ -84,7 +84,7 @@ export default Dashboard;
 const styles = StyleSheet.create({
   container: {
     height: "100%",
-    top: 0
+    top: 0,
   },
   topContainer: {
     padding: 20,
@@ -114,27 +114,33 @@ const styles = StyleSheet.create({
     width: "80%",
     display: "flex",
     alignContent: "center",
+    justifyContent: "center",
     shadowColor: "black",
-    shadowOpacity: 0.1,
+    shadowOpacity: 1,
     shadowRadius: 7,
   },
   search: {
+    fontFamily: "NunitoSans_400Regular",
     backgroundColor: "#FFFFFF",
     borderRadius: 10,
-    padding: 20,
+    padding: 15,
+    alignItems: "center",
+    justifyContent: "center",
   },
   searchButton: {
     position: "absolute",
-    top: 16,
-    right: 14,
+    color: "#2E475D",
+    top: 15,
+    right: 16,
   },
   settingsContainer: {
     borderRadius: 10,
     backgroundColor: "#2E475D",
+    alignItems: "center",
+    justifyContent: "center",
   },
   settingsButton: {
     color: "#FFFFFF",
-    alignSelf: "center",
     padding: 16,
   },
   secondHeader: {

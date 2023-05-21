@@ -8,7 +8,6 @@ import {
   TouchableOpacity,
 } from "react-native";
 import RNPickerSelect from "react-native-picker-select";
-import DropDownPicker from "react-native-dropdown-picker";
 import Icon from "react-native-vector-icons/FontAwesome";
 
 import authModel from "../../models/authModel";
@@ -22,10 +21,8 @@ import {
   NunitoSans_800ExtraBold,
   NunitoSans_900Black,
 } from "@expo-google-fonts/nunito-sans";
-import AppLoading from "expo-app-loading";
 
 import * as SplashScreen from "expo-splash-screen";
-SplashScreen.preventAutoHideAsync();
 
 const LoginScreen = ({ navigation }) => {
   const [countryCodes, setCountryCodes] = useState([]);
@@ -42,11 +39,18 @@ const LoginScreen = ({ navigation }) => {
 
   useEffect(() => {
     const fetchCountryCodes = async () => {
+      await SplashScreen.preventAutoHideAsync();
       const data = await getCountryCodes();
       setCountryCodes(data);
     };
     fetchCountryCodes();
   }, []);
+
+  useEffect(() => {
+    if (fontsLoaded) {
+      SplashScreen.hideAsync(); // Hide the splash screen once the fonts are loaded
+    }
+  }, [fontsLoaded]);
 
   const handlePhoneNumberChange = (text) => {
     // Remove all non-digit characters from the input
@@ -62,7 +66,7 @@ const LoginScreen = ({ navigation }) => {
   };
 
   if (!fontsLoaded) {
-    return <AppLoading />;
+    return null;
   } else {
     return (
       <View style={styles.container}>
@@ -86,11 +90,13 @@ const LoginScreen = ({ navigation }) => {
 
         <View style={styles.phoneContainer}>
           <RNPickerSelect
-              style={customPickerStyles}
-              value={countryCode}
-              onValueChange={(label) => {setCountryCode(label), console.log(label)}}
-              items={countryCodes}
-              useNativeAndroidPickerStyle={true}
+            style={customPickerStyles}
+            value={countryCode}
+            onValueChange={(label) => {
+              setCountryCode(label);
+            }}
+            items={countryCodes}
+            useNativeAndroidPickerStyle={true}
           />
           <TextInput
             style={styles.phoneInput}

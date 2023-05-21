@@ -1,4 +1,4 @@
-import { StyleSheet, StatusBar } from "react-native";
+import { StatusBar, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import {
   createStackNavigator,
@@ -10,6 +10,7 @@ import MatIcon from "react-native-vector-icons/MaterialCommunityIcons";
 
 import * as SplashScreen from "expo-splash-screen";
 SplashScreen.preventAutoHideAsync();
+setTimeout(SplashScreen.hideAsync, 200);
 
 import Login from "./screens/Login/Login";
 // import Login from "./screens/Login/Login2";
@@ -70,9 +71,13 @@ const BottomNav = () => {
     <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarStyle: {
-          height: 90, // increase the height of the navigation bar
-          paddingTop: 12, // add some vertical padding between the icons and labels
-          paddingBottom: 12,
+          height: 70,
+          paddingTop: 12,
+          backgroundColor: "#F5F5F5",
+          borderTopWidth: 0,
+          borderTopLeftRadius: 30,
+          borderTopRightRadius: 30,
+          overflow: "hidden",
         },
         tabBarIcon: ({ focused, color }) => {
           let iconName;
@@ -84,7 +89,7 @@ const BottomNav = () => {
               iconName = focused ? "lightbulb" : "lightbulb-outline";
               break;
             case "Applied":
-              iconName = focused ? "check-decagram" : "check-decagram-outline";
+              iconName = focused ? "check-circle" : "check-circle-outline";
               break;
             case "Saved":
               iconName = focused ? "bookmark" : "bookmark-outline";
@@ -96,13 +101,13 @@ const BottomNav = () => {
           return tabBarIcon(iconName, color);
         },
         tabBarLabelStyle: {
-          fontSize: 12, // decrease the font size of the labels
-          marginBottom: 24, // add some vertical padding below the labels
+          fontSize: 12,
+          marginBottom: 14, // Reduce bottom padding
         },
       })}
       tabBarOptions={{
         activeTintColor: "#FF5C35",
-        inactiveTintColor: "gray",
+        inactiveTintColor: "#2E475D",
       }}
     >
       <Tab.Screen
@@ -137,30 +142,36 @@ const BottomNav = () => {
 export default function App() {
   return (
     <NavigationContainer>
-        <Stack.Navigator
-          screenOptions={{ headerShown: false, ...customSlideFromRightIOS }}
-        >
-          <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="Alternate Login" component={AlternateLogin} />
-          <Stack.Screen
-            name="OTP Verification Screen"
-            component={OTPVerificationScreen}
-          />
-          <Stack.Screen name="Forgot Password" component={ForgotPassword} />
-          <Stack.Screen name="General Info" component={GeneralInfo} />
-          <Stack.Screen
-            name="Notification Selection"
-            component={NotificationSelection}
-          />
-          <Stack.Screen name="Creation Success" component={CreationSuccess} />
-          <Stack.Screen
-            name="Bottom Navigator"
-            component={BottomNav}
-            options={{ headerShown: false }}
-          />
-        </Stack.Navigator>
+      <StatusBar
+        animated={true}
+        backgroundColor="#FFFFFF"
+        barStyle={"dark-content"}
+      />
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+          ...customSlideFromRightIOS,
+        }}
+      >
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Alternate Login" component={AlternateLogin} />
+        <Stack.Screen
+          name="OTP Verification Screen"
+          component={OTPVerificationScreen}
+        />
+        <Stack.Screen name="Forgot Password" component={ForgotPassword} />
+        <Stack.Screen name="General Info" component={GeneralInfo} />
+        <Stack.Screen
+          name="Notification Selection"
+          component={NotificationSelection}
+        />
+        <Stack.Screen name="Creation Success" component={CreationSuccess} />
+        <Stack.Screen
+          name="Bottom Navigator"
+          component={BottomNav}
+          options={{ headerShown: false }}
+        />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }
-
-
