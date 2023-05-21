@@ -13,14 +13,13 @@ SplashScreen.preventAutoHideAsync();
 setTimeout(SplashScreen.hideAsync, 200);
 
 import Login from "./screens/Login/Login";
-// import Login from "./screens/Login/Login2";
 import AlternateLogin from "./screens/Login/AlternateLogin";
 import OTPVerificationScreen from "./screens/OTP/OTPVerificationScreen";
 import GeneralInfo from "./screens/Login/Generallnfo";
 import CreationSuccess from "./screens/Login/CreationSuccess";
 import ForgotPassword from "./screens/Login/ForgotPassword";
 import NotificationSelection from "./screens/Login/NotificationSelection";
-// import BottomNav from "./components/BottomNav";
+
 import Landing from "./screens/Dashboard/Landing/Landing";
 import Suggestions from "./screens/Dashboard/Suggestion";
 import Applied from "./screens/Dashboard/Applied";

@@ -6,11 +6,13 @@ import {
   Text,
   TextInput,
   View,
+  Modal,
 } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 import RNPickerSelect from "react-native-picker-select";
 import * as DocumentPicker from "expo-document-picker";
-import DateTimePicker from "@react-native-community/datetimepicker";
+
+import ExperiencePicker from "../../components/Modals/ExperiencePicker";
 
 const GeneralInfoScreen = ({ navigation }) => {
   const [fullName, setFullName] = useState("");
@@ -27,42 +29,23 @@ const GeneralInfoScreen = ({ navigation }) => {
     useState(false);
 
   const [showDatePicker, setShowDatePicker] = useState(false);
+  const [selectedCallback, setSelectedCallback] = useState(null);
   const [selectedType, setSelectedType] = useState("");
-  const [selectedDate, setSelectedDate] = useState(new Date());
-  const [dates, setDates] = useState({
-    domesticStartDate: null,
-    domesticEndDate: null,
-    abroadStartDate: null,
-    abroadEndDate: null,
-  });
 
-  const showPicker = (type) => {
+  const [domesticStartDate, setDomesticStartDate] = useState(null);
+  const [domesticEndDate, setDomesticEndDate] = useState(null);
+  const [abroadStartDate, setAbroadStartDate] = useState(null);
+  const [abroadEndDate, setAbroadEndDate] = useState(null);
+
+  const showPicker = (type, callback) => {
     setSelectedType(type);
+    setSelectedCallback(callback);
     setShowDatePicker(true);
   };
 
   const hidePicker = () => {
     setShowDatePicker(false);
   };
-
-  const handleConfirm = (date) => {
-    setSelectedDate(date);
-    setDates((prevDates) => ({ ...prevDates, [selectedType]: date }));
-    hidePicker();
-  };
-
-  // const [date, setDate] = useState(new Date());
-  // const [show, setShow] = useState(false);
-
-  // const onChange = (event, selectedDate) => {
-  //   const currentDate = selectedDate || date;
-  //   setShow(Platform.OS === "ios");
-  //   setDate(currentDate);
-  // };
-
-  // const showPicker = () => {
-  //   setShow(true);
-  // };
 
   const pickDocument = async () => {
     try {
@@ -154,49 +137,29 @@ const GeneralInfoScreen = ({ navigation }) => {
           </View>
         </View>
         <View>
-          <View>
-            <Text style={styles.subheading}>Domestic Work Experience</Text>
-            <View style={styles.dateContainer}>
-              <TouchableOpacity
-                onPress={() => showPicker("domesticStartDate")}
-                style={styles.dateButton}
-              >
-                <Text style={styles.dateButtonText}>Start Date</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => showPicker("domesticEndDate")}
-                style={styles.dateButton}
-              >
-                <Text style={styles.dateButtonText}>Start Date</Text>
-              </TouchableOpacity>
-            </View>
+          <Text style={styles.subheading}>Abroad Work Experience:</Text>
+          <View style={styles.dateContainer}>
+            <ExperiencePicker
+              label="Start Date"
+              onDateSelected={setAbroadStartDate}
+            />
+            <ExperiencePicker
+              label="End Date"
+              onDateSelected={setAbroadEndDate}
+            />
           </View>
-          <View>
-            <Text style={styles.subheading}>Abroad Work Experience</Text>
-            <View style={styles.dateContainer}>
-              <TouchableOpacity
-                onPress={() => showPicker("domesticStartDate")}
-                style={styles.dateButton}
-              >
-                <Text style={styles.dateButtonText}>Start Date</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => showPicker("domesticEndDate")}
-                style={styles.dateButton}
-              >
-                <Text style={styles.dateButtonText}>Start Date</Text>
-              </TouchableOpacity>
-            </View>
+
+          <Text style={styles.subheading}>Domestic Work Experience:</Text>
+          <View style={styles.dateContainer}>
+            <ExperiencePicker
+              label="Start Date"
+              onDateSelected={setDomesticStartDate}
+            />
+            <ExperiencePicker
+              label="End Date"
+              onDateSelected={setDomesticEndDate}
+            />
           </View>
-          <DateTimePicker
-            value={selectedDate}
-            isVisible={showDatePicker}
-            mode="date"
-            display="spinner"
-            onConfirm={handleConfirm}
-            onCancel={hidePicker}
-            dateFormat="MM-yyyy"
-          />
         </View>
         <View>
           <Text style={styles.subheading}>Nationality</Text>
@@ -310,15 +273,6 @@ const styles = StyleSheet.create({
   dateContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
-  },
-  dateButton: {
-    padding: 15,
-    backgroundColor: "#FFFFFF",
-    borderRadius: 5,
-    width: "50%",
-  },
-  dateButtonText: {
-    fontFamily: "NunitoSans_400Regular",
   },
   uploadInfo: {
     fontSize: 12,
