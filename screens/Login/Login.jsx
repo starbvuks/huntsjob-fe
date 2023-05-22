@@ -89,7 +89,7 @@ const LoginScreen = ({ navigation }) => {
         </Text>
 
         <View style={styles.phoneContainer}>
-          <RNPickerSelect
+          {/* <RNPickerSelect
             style={customPickerStyles}
             value={countryCode}
             onValueChange={(label) => {
@@ -97,7 +97,7 @@ const LoginScreen = ({ navigation }) => {
             }}
             items={countryCodes}
             useNativeAndroidPickerStyle={true}
-          />
+          /> */}
           <TextInput
             style={styles.phoneInput}
             keyboardType="phone-pad"

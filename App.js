@@ -26,6 +26,8 @@ import Applied from "./screens/Dashboard/Applied";
 import Saved from "./screens/Dashboard/Saved";
 import Profile from "./screens/Dashboard/Profile";
 
+import JobPostingDescription from "./components/JobPostingDescription";
+
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -140,37 +142,43 @@ const BottomNav = () => {
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <StatusBar
-        animated={true}
-        backgroundColor="#FFFFFF"
-        barStyle={"dark-content"}
-      />
-      <Stack.Navigator
-        screenOptions={{
-          headerShown: false,
-          ...customSlideFromRightIOS,
-        }}
-      >
-        <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Alternate Login" component={AlternateLogin} />
-        <Stack.Screen
-          name="OTP Verification Screen"
-          component={OTPVerificationScreen}
+    <View style={{ flex: 1 }}>
+      <NavigationContainer>
+        <StatusBar
+          animated={true}
+          backgroundColor="#FFFFFF"
+          barStyle={"dark-content"}
         />
-        <Stack.Screen name="Forgot Password" component={ForgotPassword} />
-        <Stack.Screen name="General Info" component={GeneralInfo} />
-        <Stack.Screen
-          name="Notification Selection"
-          component={NotificationSelection}
-        />
-        <Stack.Screen name="Creation Success" component={CreationSuccess} />
-        <Stack.Screen
-          name="Bottom Navigator"
-          component={BottomNav}
-          options={{ headerShown: false }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+        <Stack.Navigator
+          screenOptions={{
+            headerShown: false,
+            ...customSlideFromRightIOS,
+          }}
+        >
+          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="Alternate Login" component={AlternateLogin} />
+          <Stack.Screen
+            name="OTP Verification Screen"
+            component={OTPVerificationScreen}
+          />
+          <Stack.Screen name="Forgot Password" component={ForgotPassword} />
+          <Stack.Screen name="General Info" component={GeneralInfo} />
+          <Stack.Screen
+            name="Notification Selection"
+            component={NotificationSelection}
+          />
+          <Stack.Screen name="Creation Success" component={CreationSuccess} />
+          <Stack.Screen
+            name="Bottom Navigator"
+            component={BottomNav}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Job Posting Description"
+            component={JobPostingDescription}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </View>
   );
 }

@@ -163,7 +163,7 @@ const GeneralInfoScreen = ({ navigation }) => {
         </View>
         <View>
           <Text style={styles.subheading}>Nationality</Text>
-          <RNPickerSelect
+          {/* <RNPickerSelect
             style={customPickerStyles}
             onValueChange={setNationality}
             value={nationality}
@@ -173,7 +173,7 @@ const GeneralInfoScreen = ({ navigation }) => {
               { label: "India", value: "India" },
               { label: "Australia", value: "Australia" },
             ]}
-          />
+          /> */}
         </View>
         <View>
           <TouchableOpacity
