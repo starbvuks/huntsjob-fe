@@ -12,6 +12,7 @@ import Icon from "react-native-vector-icons/FontAwesome";
 
 import authModel from "../../models/authModel";
 import getCountryCodes from "../../models/countryCodeModel";
+import CountryCodePicker from "../../components/Modals/CountryCodePicker";
 
 import {
   useFonts,
@@ -70,14 +71,9 @@ const LoginScreen = ({ navigation }) => {
   } else {
     return (
       <View style={styles.container}>
-        <Image
-          source={require("../../assets/huntsjob-logo.png")}
-          style={styles.logo}
-        />
-
         <View style={styles.imageContainer}>
           <Image
-            source={require("../../assets/login-graphic.png")}
+            source={require("../../assets/transparent-logo.png")}
             style={styles.image}
           />
         </View>
@@ -89,15 +85,7 @@ const LoginScreen = ({ navigation }) => {
         </Text>
 
         <View style={styles.phoneContainer}>
-          {/* <RNPickerSelect
-            style={customPickerStyles}
-            value={countryCode}
-            onValueChange={(label) => {
-              setCountryCode(label);
-            }}
-            items={countryCodes}
-            useNativeAndroidPickerStyle={true}
-          /> */}
+          <CountryCodePicker />
           <TextInput
             style={styles.phoneInput}
             keyboardType="phone-pad"
@@ -157,19 +145,17 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     width: "100%",
-    height: "40%",
+    height: "50%",
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: 20,
   },
   image: {
-    height: "90%",
+    height: "100%",
     resizeMode: "contain",
-    marginTop: 150,
   },
   header: {
     fontSize: 24,
-    marginTop: 80,
+    marginTop: 30,
     marginBottom: 10,
     alignSelf: "flex-start",
     fontFamily: "NunitoSans_800ExtraBold",

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   View,
   Image,
@@ -7,28 +7,27 @@ import {
   TouchableOpacity,
   StyleSheet,
   SafeAreaView,
-} from 'react-native';
+} from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 
-const App = ({navigation}) => {
+const App = ({ navigation }) => {
   const [passwordVisible, setPasswordVisible] = useState(false);
 
   return (
     <SafeAreaView style={styles.container}>
-    <Image
+      <Image
         source={require("../../assets/huntsjob-logo.png")}
         style={styles.logo}
-    />
-    <View style={styles.headerBox}>
-
-      <Text style={styles.title}>
-        Enter your <Text style={styles.highlight}>Phone Number</Text> or{'\n'}
-        <Text style={styles.highlight}>Email</Text>
-      </Text>
-      <Text style={styles.smallText}>
-        If Phone number, mention country code.{'\n'}(example: +91 xxxxx xxxxx)
-      </Text>
-    </View>
+      />
+      <View style={styles.headerBox}>
+        <Text style={styles.title}>
+          Enter your <Text style={styles.highlight}>Phone Number</Text> or{"\n"}
+          <Text style={styles.highlight}>Email</Text>
+        </Text>
+        <Text style={styles.smallText}>
+          If Phone number, mention country code.{"\n"}(example: +91 xxxxx xxxxx)
+        </Text>
+      </View>
       <View style={styles.formContainer}>
         <Text style={styles.subheading}>Account Details</Text>
         <TextInput
@@ -50,17 +49,25 @@ const App = ({navigation}) => {
           </TouchableOpacity>
         </View>
       </View>
-      <TouchableOpacity style={styles.continueButton} onPress={() => navigation.navigate('General Info')}>
+      <TouchableOpacity
+        style={styles.continueButton}
+        onPress={() => navigation.navigate("General Info")}
+      >
         <Text style={styles.continueButtonText}>Continue</Text>
-      </ TouchableOpacity>
+      </TouchableOpacity>
       <View style={styles.bottomBox}>
-
-      <Text style={styles.subbuttonheader} onPress={() => navigation.navigate('OTP Verification Screen')}>
-        Back to OTP
-      </Text>
-      <Text style={styles.subbuttonheader} onPress={() => navigation.navigate('Forgot Password')}>
-        Forgot Password?
-      </Text>
+        <Text
+          style={styles.subbuttonheader}
+          onPress={() => navigation.navigate("Login")}
+        >
+          Back to OTP
+        </Text>
+        <Text
+          style={styles.subbuttonheader}
+          onPress={() => navigation.navigate("Forgot Password")}
+        >
+          Forgot Password?
+        </Text>
       </View>
     </SafeAreaView>
   );
@@ -69,46 +76,46 @@ const App = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    backgroundColor: "#FFFFFF"
+    alignItems: "center",
+    backgroundColor: "#FFFFFF",
   },
   logo: {
     marginLeft: 10,
     position: "absolute",
     top: 55,
-    left: 10
+    left: 10,
   },
   headerBox: {
-    width: '100%',
-    alignItems: 'flex-start',
-    marginLeft: 40,
+    width: "100%",
+    alignItems: "flex-start",
+    marginLeft: 50,
     marginBottom: 30,
   },
   title: {
-    fontWeight: 'bold',
+    fontFamily: "NunitoSans_800ExtraBold",
     fontSize: 24,
     marginTop: 130,
-    
   },
   highlight: {
-    color: '#FF5C35',
+    color: "black",
   },
   smallText: {
     fontSize: 14,
     marginTop: 10,
     marginBottom: 20,
+    fontFamily: "NunitoSans_400Regular",
   },
   formContainer: {
-    backgroundColor: '#FF5C35',
     borderRadius: 10,
-    paddingHorizontal: 20,
-    paddingVertical: 30,
-    width: '90%',
+    paddingHorizontal: 10,
+    paddingTop: 20,
+    paddingBottom: 40,
+    width: "90%",
   },
   subheading: {
     fontSize: 18,
-    color: "#FFFFFF",
-    fontWeight: 'bold',
+    color: "#FF5C35",
+    fontFamily: "NunitoSans_700Bold",
     marginTop: 10,
   },
   subbuttonheader: {
@@ -118,52 +125,60 @@ const styles = StyleSheet.create({
     color: "#82919E",
   },
   formInput: {
-    backgroundColor: '#FFFFFF',
-    borderRadius: 5,
-    paddingHorizontal: 10,
-    paddingVertical: 15,
-    marginTop: 10,
-    marginBottom: 15
-  },
-  passwordInput: {
-    backgroundColor: '#FFFFFF',
+    borderColor: "#F0F0F0",
+    borderWidth: 1.5,
     borderRadius: 5,
     paddingHorizontal: 10,
     paddingVertical: 15,
     marginTop: 10,
     marginBottom: 15,
-    flex: 1
+    fontFamily: "NunitoSans_400Regular",
+  },
+  passwordInput: {
+    borderColor: "#F0F0F0",
+    borderWidth: 1.5,
+    borderRadius: 5,
+    paddingHorizontal: 10,
+    paddingVertical: 15,
+    marginTop: 10,
+    marginBottom: 15,
+    fontFamily: "NunitoSans_400Regular",
+    flex: 1,
   },
   passwordInputContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
   },
   passwordToggle: {
     marginLeft: 10,
     position: "absolute",
-    right: 10
+    right: 12,
+    color: "#F0F0F0",
   },
   continueButton: {
-    borderWidth: 1,
-    width: '90%',
-    borderColor: '#FF5C35',
+    width: "90%",
+    backgroundColor: "#FF5C35",
     borderRadius: 7,
     paddingVertical: 10,
     marginTop: 70,
     marginBottom: 20,
   },
   continueButtonText: {
-    color: '#FF5C35',
+    color: "#FFFFFF",
     fontSize: 18,
-    fontWeight: 'bold',
-    textAlign: 'center'
+    fontFamily: "NunitoSans_700Bold",
+    textAlign: "center",
   },
   bottomBox: {
     display: "flex",
     flexDirection: "row",
     width: "80%",
-    justifyContent: "space-between"
-  }
+    justifyContent: "space-between",
+  },
+  subbuttonheader: {
+    fontFamily: "NunitoSans_700Bold",
+    color: "#434343",
+  },
 });
 
 export default App;
