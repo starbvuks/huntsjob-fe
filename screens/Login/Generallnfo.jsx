@@ -1,18 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   ScrollView,
   StyleSheet,
   TouchableOpacity,
   Text,
-  TextInput,
+  Animated,
   View,
-  Modal,
 } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
-import RNPickerSelect from "react-native-picker-select";
 import * as DocumentPicker from "expo-document-picker";
 
-import ExperiencePicker from "../../components/Modals/ExperiencePicker";
+import BasicDetailsForm from "../../components/Forms/BasicDetailsForm";
+import ExperienceForm from "../../components/Forms/ExperienceForm";
+import GeneralTabBar from "../../components/Forms/GeneralTabBar";
 
 const GeneralInfoScreen = ({ navigation }) => {
   const [fullName, setFullName] = useState("");
@@ -28,41 +28,64 @@ const GeneralInfoScreen = ({ navigation }) => {
   const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] =
     useState(false);
 
+  const [showExperience, setShowExperience] = useState(false);
+
+  const [activeTab, setActiveTab] = useState("basicDetails");
+  const [animatedValue] = useState(new Animated.Value(0));
+
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [selectedCallback, setSelectedCallback] = useState(null);
   const [selectedType, setSelectedType] = useState("");
 
-  const [domesticStartDate, setDomesticStartDate] = useState(null);
-  const [domesticEndDate, setDomesticEndDate] = useState(null);
-  const [abroadStartDate, setAbroadStartDate] = useState(null);
-  const [abroadEndDate, setAbroadEndDate] = useState(null);
+  const [domesticMonths, setDomesticMonths] = useState(null);
+  const [domesticYears, setDomesticYears] = useState(null);
+  const [abroadMonths, setAbroadMonths] = useState(null);
+  const [abroadYears, setAbroadYears] = useState(null);
 
-  const showPicker = (type, callback) => {
-    setSelectedType(type);
-    setSelectedCallback(callback);
-    setShowDatePicker(true);
+  const handleTransition = () => {
+    Animated.timing(animatedValue, {
+      toValue: showExperience ? 1 : 0,
+      duration: 300,
+      useNativeDriver: true,
+    }).start();
   };
 
-  const hidePicker = () => {
-    setShowDatePicker(false);
+  useEffect(() => {
+    handleTransition();
+  }, [showExperience]);
+
+  useEffect(() => {
+    setActiveTab(showExperience ? "experience" : "basicDetails");
+  }, [showExperience]);
+
+  const basicDetailsFormStyle = {
+    transform: [
+      {
+        translateX: animatedValue.interpolate({
+          inputRange: [0, 1],
+          outputRange: [0, -300],
+        }),
+      },
+    ],
+    opacity: animatedValue.interpolate({
+      inputRange: [0, 1],
+      outputRange: [1, 0],
+    }),
   };
 
-  const pickDocument = async () => {
-    try {
-      const result = await DocumentPicker.getDocumentAsync({
-        type: ["application/pdf", "application/msword", "text/plain"],
-      });
-
-      if (result.type === "success") {
-        setResume(result.uri);
-        // const fileInfo = await FileSystem.getInfoAsync(result.uri);
-        const fileInfo = result.name;
-        setResumeButtonText(fileInfo);
-        console.log(fileInfo);
-      }
-    } catch (error) {
-      console.log("Error picking document", error);
-    }
+  const experienceFormStyle = {
+    transform: [
+      {
+        translateX: animatedValue.interpolate({
+          inputRange: [0, 1],
+          outputRange: [300, 0],
+        }),
+      },
+    ],
+    opacity: animatedValue.interpolate({
+      inputRange: [0, 1],
+      outputRange: [0, 1],
+    }),
   };
 
   const handleSubmit = () => {
@@ -86,117 +109,59 @@ const GeneralInfoScreen = ({ navigation }) => {
         </TouchableOpacity>
         <Text style={styles.header}>General Info</Text>
       </View>
-      <View style={styles.formContainer}>
-        <Text style={styles.enterDetails}>Enter your details</Text>
-        <View>
-          <Text style={styles.subheading}>Full Name</Text>
-          <TextInput
-            style={styles.phoneInput}
-            placeholder="Full Name"
-            value={fullName}
-            onChangeText={setFullName}
-          />
-        </View>
-        <View>
-          <Text style={styles.subheading}>Email ID</Text>
-          <TextInput
-            style={styles.phoneInput}
-            placeholder="Email ID"
-            value={email}
-            onChangeText={setEmail}
-          />
-        </View>
-        <View style={styles.phoneContainer}>
-          <View style={styles.passwordContainer}>
-            <Text style={styles.subheading}>Password</Text>
-            <TextInput
-              style={styles.phoneInput}
-              placeholder="Password"
-              secureTextEntry={!isPasswordVisible}
-              value={password}
-              onChangeText={setPassword}
-            />
-          </View>
-          <TouchableOpacity
-            style={styles.iconContainer}
-            onPress={() => setIsPasswordVisible(!isPasswordVisible)}
-          >
-            <Icon name={isPasswordVisible ? "eye" : "eye-off"} size={24} />
-          </TouchableOpacity>
-        </View>
-        <View>
-          <Text style={styles.subheading}>Confirm Password</Text>
-          <View style={styles.phoneContainer}>
-            <TextInput
-              style={styles.phoneInput}
-              placeholder="Confirm Password"
-              secureTextEntry={!isConfirmPasswordVisible}
-              value={confirmPassword}
-              onChangeText={setConfirmPassword}
-            />
-          </View>
-        </View>
-        <View>
-          <Text style={styles.subheading}>Abroad Work Experience:</Text>
-          <View style={styles.dateContainer}>
-            <ExperiencePicker
-              label="Start Date"
-              onDateSelected={setAbroadStartDate}
-            />
-            <ExperiencePicker
-              label="End Date"
-              onDateSelected={setAbroadEndDate}
-            />
-          </View>
 
-          <Text style={styles.subheading}>Domestic Work Experience:</Text>
-          <View style={styles.dateContainer}>
-            <ExperiencePicker
-              label="Start Date"
-              onDateSelected={setDomesticStartDate}
-            />
-            <ExperiencePicker
-              label="End Date"
-              onDateSelected={setDomesticEndDate}
-            />
-          </View>
-        </View>
-        <View>
-          <Text style={styles.subheading}>Nationality</Text>
-          {/* <RNPickerSelect
-            style={customPickerStyles}
-            onValueChange={setNationality}
-            value={nationality}
-            items={[
-              { label: "US", value: "US" },
-              { label: "UK", value: "UK" },
-              { label: "India", value: "India" },
-              { label: "Australia", value: "Australia" },
-            ]}
-          /> */}
-        </View>
-        <View>
-          <TouchableOpacity
-            onPress={pickDocument}
-            style={styles.buttonContainer}
-          >
-            <Text style={styles.buttonText}>{resumeButtonText}</Text>
-          </TouchableOpacity>
-          {/* <Button title="Upload Resume" onPress={pickDocument} /> */}
+      <GeneralTabBar activeTab={activeTab} />
 
-          <Text style={styles.uploadInfo}>
-            {" "}
-            DOC, DOCx, PDF, RTF, Recruiters give first preference to candidates
-            who have a resume. Max 5MB
-          </Text>
-        </View>
-        <TouchableOpacity
-          style={styles.continueButton}
-          onPress={() => handleSubmit()}
-        >
-          <Text style={styles.continueButtonText}>Continue</Text>
-        </TouchableOpacity>
-      </View>
+      {!showExperience ? (
+        <Animated.View style={basicDetailsFormStyle}>
+          <BasicDetailsForm
+            onNext={() => setShowExperience(true)}
+            fullName={fullName}
+            setFullName={setFullName}
+            email={email}
+            setEmail={setEmail}
+            password={password}
+            setPassword={setPassword}
+            confirmPassword={confirmPassword}
+            setConfirmPassword={setConfirmPassword}
+            isPasswordVisible={isPasswordVisible}
+            setIsPasswordVisible={setIsPasswordVisible}
+            isConfirmPasswordVisible={isConfirmPasswordVisible}
+            setIsConfirmPasswordVisible={setIsConfirmPasswordVisible}
+          />
+        </Animated.View>
+      ) : (
+        <Animated.View style={experienceFormStyle}>
+          <ExperienceForm
+            domesticMonths={domesticMonths}
+            setDomesticMonths={setDomesticMonths}
+            domesticYears={domesticYears}
+            setDomesticYears={setDomesticYears}
+            abroadMonths={abroadMonths}
+            setAbroadMonths={setAbroadMonths}
+            abroadYears={abroadYears}
+            setAbroadYears={setAbroadYears}
+            resume={resume}
+            setResume={setResume}
+            resumeButtonText={resumeButtonText}
+            setResumeButtonText={setResumeButtonText}
+          />
+          <View style={styles.bottomRow}>
+            <TouchableOpacity
+              onPress={() => setShowExperience(false)}
+              style={styles.prevButton}
+            >
+              <Icon name="arrow-back" size={32} style={styles.backIconBottom} />
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.continueButton}
+              onPress={() => handleSubmit()}
+            >
+              <Text style={styles.continueButtonText}>Continue</Text>
+            </TouchableOpacity>
+          </View>
+        </Animated.View>
+      )}
     </ScrollView>
   );
 };
@@ -211,7 +176,7 @@ const styles = StyleSheet.create({
   headerRow: {
     flex: 1,
     gap: 8,
-    marginVertical: 20,
+    marginVertical: 10,
     padding: 30,
     flexDirection: "column",
     alignItems: "flex-start",
@@ -220,104 +185,46 @@ const styles = StyleSheet.create({
     fontSize: 34,
     fontWeight: "bold",
   },
-  enterDetails: {
-    fontSize: 25,
-    fontFamily: "NunitoSans_800ExtraBold",
-    color: "#FFFFFF",
-  },
   formContainer: {
     flex: 1,
     flexDirection: "column",
-    marginVtOP: 20,
+    marginTop: 20,
     gap: 30,
     backgroundColor: "#4A051C",
     padding: 30,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
   },
-  phoneContainer: {
+  bottomRow: {
     flexDirection: "row",
+    alignContent: "center",
     alignItems: "center",
-    position: "relative",
-  },
-  subheading: {
-    fontSize: 14,
-    marginBottom: 10,
-    fontFamily: "NunitoSans_700Bold",
-    color: "#FFFFFF",
-  },
-  passwordContainer: {
-    flex: 1,
-  },
-  phoneInput: {
-    flex: 1,
-    padding: 12,
-    backgroundColor: "#FFFFFF",
-    borderRadius: 5,
-    fontFamily: "NunitoSans_400Regular",
-  },
-  iconContainer: {
-    position: "absolute",
-    right: 10,
-    bottom: 10,
-  },
-  buttonContainer: {
-    backgroundColor: "#FFFFFF",
-    paddingHorizontal: 10,
-    paddingVertical: 10,
-    borderRadius: 3,
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 5,
-  },
-  dateContainer: {
-    flexDirection: "row",
     justifyContent: "space-between",
+    width: "93%",
+    marginBottom: 60,
   },
-  uploadInfo: {
-    fontSize: 12,
-    textAlign: "center",
-    marginTop: 10,
-    color: "#FFFFFF",
+  backIconBottom: {
+    color: "#970C0C",
+  },
+  prevButton: {
+    borderColor: "#970C0C",
+    borderWidth: 1.5,
+    padding: 4,
+    borderRadius: 5,
+    marginLeft: 30,
   },
   continueButton: {
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "#FF5C35",
     paddingHorizontal: 30,
     paddingVertical: 12,
     borderRadius: 5,
-    marginVertical: 40,
-    width: "100%",
+    width: "75%",
   },
   continueButtonText: {
-    color: "#ED8200",
+    color: "#FFFFFF",
     fontSize: 16,
     fontWeight: "bold",
     textAlign: "center",
-  },
-});
-
-const customPickerStyles = StyleSheet.create({
-  inputIOS: {
-    borderColor: "#D5DADF",
-    borderWidth: 2,
-    borderRadius: 5,
-    fontSize: 14,
-    fontFamily: "NunitoSans_400Regular",
-    paddingVertical: 10,
-    paddingHorizontal: 12,
-    color: "black",
-    paddingRight: 30, // to ensure the text is never behind the icon
-  },
-  inputAndroid: {
-    backgroundColor: "#FFFFFF",
-    borderWidth: 2,
-    borderRadius: 5,
-    fontSize: 14,
-    fontFamily: "NunitoSans_400Regular",
-    paddingVertical: 10,
-    paddingHorizontal: 12,
-    color: "black",
-    paddingRight: 30, // to ensure the text is never behind the icon
   },
 });
 

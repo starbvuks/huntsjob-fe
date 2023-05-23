@@ -79,8 +79,6 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
-
 const styles = StyleSheet.create({
   container: {
     height: "100%",
@@ -191,3 +189,5 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
 });
+
+export default Dashboard;

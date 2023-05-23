@@ -10,7 +10,7 @@ import MatIcon from "react-native-vector-icons/MaterialCommunityIcons";
 
 import * as SplashScreen from "expo-splash-screen";
 SplashScreen.preventAutoHideAsync();
-setTimeout(SplashScreen.hideAsync, 200);
+setTimeout(SplashScreen.hideAsync, 2000);
 
 import Login from "./screens/Login/Login";
 import AlternateLogin from "./screens/Login/AlternateLogin";
@@ -74,10 +74,8 @@ const BottomNav = () => {
         tabBarStyle: {
           height: 70,
           paddingTop: 12,
-          backgroundColor: "#F5F5F5",
+          backgroundColor: "#2E475D",
           borderTopWidth: 0,
-          borderTopLeftRadius: 30,
-          borderTopRightRadius: 30,
           overflow: "hidden",
         },
         tabBarIcon: ({ focused, color }) => {
@@ -104,11 +102,12 @@ const BottomNav = () => {
         tabBarLabelStyle: {
           fontSize: 12,
           marginBottom: 14, // Reduce bottom padding
+          fontFamily: "NunitoSans_700Bold",
         },
       })}
       tabBarOptions={{
-        activeTintColor: "#FF5C35",
-        inactiveTintColor: "#2E475D",
+        activeTintColor: "#8E9DCC",
+        inactiveTintColor: "#F5F5F5",
       }}
     >
       <Tab.Screen
