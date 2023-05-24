@@ -1,18 +1,15 @@
 import React, { useState } from "react";
 import {
-  ScrollView,
   StyleSheet,
   TouchableOpacity,
   Text,
   TextInput,
   View,
-  Modal,
 } from "react-native";
-import Icon from "react-native-vector-icons/Ionicons";
-import RNPickerSelect from "react-native-picker-select";
+
 import * as DocumentPicker from "expo-document-picker";
 
-import NationalityPicker from "../Modals/NationalityPicker";
+import NationalityPicker from "../Pickers/NationalityPicker";
 
 const ExperienceForm = ({
   domesticMonths,

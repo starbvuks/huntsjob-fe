@@ -1,11 +1,11 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { ScrollView, Text, StyleSheet } from "react-native";
 
 import JobPostings from "../../../components/JobPostings";
 
 const LowerSection = () => {
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       <Text style={styles.subheading}>
         Based on your profile, here are some jobs that might fit your
         description
@@ -15,7 +15,7 @@ const LowerSection = () => {
       <JobPostings />
       <JobPostings />
       <JobPostings />
-    </View>
+    </ScrollView>
   );
 };
 

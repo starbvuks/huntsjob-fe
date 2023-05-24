@@ -38,7 +38,7 @@ const Dashboard = () => {
   // }, []);
 
   return (
-    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+    <View style={styles.container} >
       <StatusBar
         animated={true}
         backgroundColor="#2E475D"
@@ -84,7 +84,7 @@ const Dashboard = () => {
       </View>
 
       <LowerSection />
-    </ScrollView>
+    </View>
   );
 };
 

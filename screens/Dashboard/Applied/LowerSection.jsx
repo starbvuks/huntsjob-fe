@@ -1,15 +1,15 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { ScrollView, Text, StyleSheet } from "react-native";
 
 import AppliedJobs from "../../../components/AppliedJobs";
 
 const LowerSection = () => {
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       <Text style={styles.subheading}>Jobs you applied for</Text>
       <AppliedJobs />
       <AppliedJobs />
-    </View>
+    </ScrollView>
   );
 };
 

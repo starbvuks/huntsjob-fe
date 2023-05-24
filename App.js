@@ -27,7 +27,7 @@ import Saved from "./screens/Dashboard/Saved/Saved";
 import Profile from "./screens/Dashboard/Profile/Profile";
 
 import JobPostingDescription from "./components/JobPostingDescription";
-import SalaryForm from "./components/Forms/SalaryForm";
+import EditProfile from "./components/Forms/EditProfile";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -177,7 +177,7 @@ export default function App() {
             name="Job Posting Description"
             component={JobPostingDescription}
           />
-          <Stack.Screen name="Salary Form" component={SalaryForm} />
+          <Stack.Screen name="Edit Profile" component={EditProfile} />
         </Stack.Navigator>
       </NavigationContainer>
     </View>

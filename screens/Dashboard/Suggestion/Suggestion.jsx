@@ -14,7 +14,7 @@ import LowerSection from "./LowerSection";
 
 export default function Suggestions() {
   return (
-    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+    <View style={styles.container} showsVerticalScrollIndicator={false}>
       <StatusBar
         animated={true}
         backgroundColor="#2E475D"
@@ -42,7 +42,7 @@ export default function Suggestions() {
       </View>
 
       <LowerSection />
-    </ScrollView>
+    </View>
   );
 }
 

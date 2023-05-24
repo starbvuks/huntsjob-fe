@@ -7,7 +7,7 @@ import LowerSection from "./LowerSection";
 
 export default function Saved() {
   return (
-    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+    <View style={styles.container}>
       <View style={styles.topContainer}>
         <View style={styles.headerContainer}>
           <Text style={styles.header}>Saved Jobs</Text>
@@ -30,7 +30,7 @@ export default function Saved() {
       </View>
 
       <LowerSection />
-    </ScrollView>
+    </View>
   );
 }
 

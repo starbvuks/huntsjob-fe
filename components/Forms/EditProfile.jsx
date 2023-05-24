@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { View, TextInput, StyleSheet, Text } from "react-native";
 
-const SalaryForm = () => {
+import GeneralInfoScreen from "../../screens/Login/Generallnfo";
+
+const EditProfile = () => {
   const [currentSalary, setCurrentSalary] = useState("");
   const [expectedSalary, setExpectedSalary] = useState("");
   const [noticePeriod, setNoticePeriod] = useState("");
@@ -99,4 +101,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SalaryForm;
+export default EditProfile;

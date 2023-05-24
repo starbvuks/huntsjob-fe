@@ -7,12 +7,11 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
-import RNPickerSelect from "react-native-picker-select";
 import Icon from "react-native-vector-icons/FontAwesome";
 
 import authModel from "../../models/authModel";
 import getCountryCodes from "../../models/countryCodeModel";
-import CountryCodePicker from "../../components/Modals/CountryCodePicker";
+import CountryCodePicker from "../../components/Pickers/CountryCodePicker";
 
 import {
   useFonts,

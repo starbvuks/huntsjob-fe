@@ -1,28 +1,38 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Modal } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/Feather";
 
 import ProfilePicture from "../../../components/ProfilePicture";
-import SalaryForm from "../../../components/Forms/SalaryForm";
+import Experience from "../../../components/Details/ExperienceDetails";
+import Education from "../../../components/Details/EducationDetails";
 
 const LowerSection = () => {
   const navigation = useNavigation();
 
   const editSalaryHandler = () => {
-    navigation.navigate("Salary Form");
+    navigation.navigate("General Info");
   };
 
   return (
     <View style={styles.container}>
       <ProfilePicture />
       <Text style={styles.pfpText}>User Name</Text>
+      <View style={styles.topBottonContainer}>
+
       <TouchableOpacity
         style={styles.button}
         onPress={() => editSalaryHandler()}
-      >
+        >
         <Text style={styles.buttonText}>Edit Profile</Text>
       </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.button2}
+        onPress={() => editSalaryHandler()}
+        >
+        <Text style={styles.buttonText2}>Edit Account Details</Text>
+      </TouchableOpacity>
+        </View>
 
       <View style={styles.section}>
         <View style={styles.sectionHead}>
@@ -32,6 +42,7 @@ const LowerSection = () => {
             <Icon name="edit-3" size={22} />
           </View>
         </View>
+        <Experience userId={12345} />
       </View>
       <View style={styles.section}>
         <View style={styles.sectionHead}>
@@ -41,6 +52,7 @@ const LowerSection = () => {
             <Icon name="edit-3" size={22} />
           </View>
         </View>
+        <Education userId={12345} />
       </View>
     </View>
   );
@@ -55,6 +67,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     marginTop: 60,
+    paddingBottom: 60
   },
   pfpText: {
     fontFamily: "NunitoSans_700Bold",
@@ -69,16 +82,34 @@ const styles = StyleSheet.create({
     letterSpacing: 0.1,
     textAlign: "center",
   },
+  topBottonContainer: {
+    flexDirection: "row",
+    width: "90%",
+    justifyContent: "space-between"
+  },
   button: {
     paddingVertical: 10,
-    paddingHorizontal: 45,
+    paddingHorizontal: 35,
     borderRadius: 20,
     backgroundColor: "#2E475D",
+    marginTop: 30,
+  },
+  button2: {
+    paddingVertical: 10,
+    paddingHorizontal: 35,
+    borderRadius: 20,
+    borderWidth: 1.5,
+    borderColor: "#2E475D",
     marginTop: 30,
   },
   buttonText: {
     fontSize: 14,
     color: "#F3F3F3",
+    fontFamily: "NunitoSans_400Regular",
+  },
+  buttonText2: {
+    fontSize: 14,
+    color: "#2E475D",
     fontFamily: "NunitoSans_400Regular",
   },
   section: {

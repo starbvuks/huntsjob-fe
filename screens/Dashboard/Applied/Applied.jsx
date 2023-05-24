@@ -7,7 +7,7 @@ import LowerSection from "./LowerSection";
 
 export default function Applied() {
   return (
-    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+    <View style={styles.container} >
       <View style={styles.topContainer}>
         <View style={styles.headerContainer}>
           <Text style={styles.header}>Your Applications</Text>
@@ -30,7 +30,7 @@ export default function Applied() {
       </View>
 
       <LowerSection />
-    </ScrollView>
+    </View>
   );
 }
 
