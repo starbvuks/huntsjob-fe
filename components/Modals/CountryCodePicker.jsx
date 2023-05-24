@@ -93,9 +93,8 @@ const styles = StyleSheet.create({
   picker: {
     flexDirection: "row",
     alignItems: "center",
-    borderWidth: 1,
+    borderRightWidth: 1,
     borderColor: "#CCCCCC",
-    borderRadius: 4,
     padding: 8,
   },
   pickerText: {

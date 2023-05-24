@@ -6,7 +6,10 @@ import JobPostings from "../../../components/JobPostings";
 const LowerSection = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.subheading}>Companies Actively Hiring</Text>
+      <Text style={styles.subheading}>
+        Based on your profile, here are some jobs that might fit your
+        description
+      </Text>
       <JobPostings />
       <JobPostings />
       <JobPostings />
@@ -27,6 +30,7 @@ const styles = StyleSheet.create({
   subheading: {
     fontFamily: "NunitoSans_700Bold",
     marginTop: 30,
+    marginHorizontal: 40,
     fontSize: 14,
     letterSpacing: 0.1,
     textAlign: "center",

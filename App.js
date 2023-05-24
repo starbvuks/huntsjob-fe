@@ -21,10 +21,10 @@ import ForgotPassword from "./screens/Login/ForgotPassword";
 import NotificationSelection from "./screens/Login/NotificationSelection";
 
 import Landing from "./screens/Dashboard/Landing/Landing";
-import Suggestions from "./screens/Dashboard/Suggestion";
-import Applied from "./screens/Dashboard/Applied";
-import Saved from "./screens/Dashboard/Saved";
-import Profile from "./screens/Dashboard/Profile";
+import Suggestions from "./screens/Dashboard/Suggestion/Suggestion";
+import Applied from "./screens/Dashboard/Applied/Applied";
+import Saved from "./screens/Dashboard/Saved/Saved";
+import Profile from "./screens/Dashboard/Profile/Profile";
 
 import JobPostingDescription from "./components/JobPostingDescription";
 
@@ -74,7 +74,7 @@ const BottomNav = () => {
         tabBarStyle: {
           height: 70,
           paddingTop: 12,
-          backgroundColor: "#2E475D",
+          backgroundColor: "#FCFCFC",
           borderTopWidth: 0,
           overflow: "hidden",
         },
@@ -106,8 +106,8 @@ const BottomNav = () => {
         },
       })}
       tabBarOptions={{
-        activeTintColor: "#8E9DCC",
-        inactiveTintColor: "#F5F5F5",
+        activeTintColor: "#FF5C35",
+        inactiveTintColor: "#2E475D",
       }}
     >
       <Tab.Screen

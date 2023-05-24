@@ -223,23 +223,4 @@ const styles = StyleSheet.create({
   },
 });
 
-const customPickerStyles = StyleSheet.create({
-  inputIOS: {
-    fontSize: 14,
-    fontFamily: "NunitoSans_400Regular",
-    paddingVertical: 10,
-    paddingHorizontal: 12,
-    color: "black",
-    paddingRight: 30, // to ensure the text is never behind the icon
-  },
-  inputAndroid: {
-    fontSize: 14,
-    fontFamily: "NunitoSans_400Regular",
-    paddingVertical: 10,
-    paddingHorizontal: 12,
-    color: "black",
-    paddingRight: 30, // to ensure the text is never behind the icon
-  },
-});
-
 export default LoginScreen;

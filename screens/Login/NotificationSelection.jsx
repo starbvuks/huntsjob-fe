@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import Icon from 'react-native-vector-icons/AntDesign';
+import React, { useState } from "react";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import Icon from "react-native-vector-icons/AntDesign";
 
-const NotificationSelection = ({navigation}) => {
+const NotificationSelection = ({ navigation }) => {
   const [smsNotifications, setSmsNotifications] = useState(false);
   const [whatsappNotifications, setWhatsappNotifications] = useState(false);
   const [emailNewsletter, setEmailNewsletter] = useState(false);
@@ -20,8 +20,8 @@ const NotificationSelection = ({navigation}) => {
   };
 
   const handleContinue = () => {
-    console.log(smsNotifications, whatsappNotifications, emailNewsletter)
-    navigation.navigate('Creation Success');
+    console.log(smsNotifications, whatsappNotifications, emailNewsletter);
+    navigation.navigate("Creation Success");
   };
 
   return (
@@ -29,21 +29,42 @@ const NotificationSelection = ({navigation}) => {
       <View style={styles.header}>
         <Icon name="notification" size={50} color="#FF5C35" />
         <Text style={styles.title}>Want to stay up to date?</Text>
-        <Text style={styles.subtitle}>Enable notifications from various channels now to ensure you never miss an opportunity</Text>
+        <Text style={styles.subtitle}>
+          Enable notifications from various channels now to ensure you never
+          miss an opportunity
+        </Text>
       </View>
       <View style={styles.checkboxContainer}>
-        <TouchableOpacity style={styles.checkbox} onPress={handleSmsNotificationsChange}>
-          <Icon name={smsNotifications ? "checksquare" : "checksquareo"} size={24} color="#FF5C35" />
+        <View style={styles.checkbox}>
+          <TouchableOpacity onPress={handleSmsNotificationsChange}>
+            <Icon
+              name={smsNotifications ? "checksquare" : "checksquareo"}
+              size={24}
+              color="#FF5C35"
+            />
+          </TouchableOpacity>
           <Text style={styles.checkboxText}>SMS Notifications</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.checkbox} onPress={handleWhatsappNotificationsChange}>
-          <Icon name={whatsappNotifications ? "checksquare" : "checksquareo"} size={24} color="#FF5C35" />
+        </View>
+        <View style={styles.checkbox}>
+          <TouchableOpacity onPress={handleWhatsappNotificationsChange}>
+            <Icon
+              name={whatsappNotifications ? "checksquare" : "checksquareo"}
+              size={24}
+              color="#FF5C35"
+            />
+          </TouchableOpacity>
           <Text style={styles.checkboxText}>Whatsapp Notifications</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.checkbox} onPress={handleEmailNewsletterChange}>
-          <Icon name={emailNewsletter ? "checksquare" : "checksquareo"} size={24} color="#FF5C35" />
+        </View>
+        <View style={styles.checkbox}>
+          <TouchableOpacity onPress={handleEmailNewsletterChange}>
+            <Icon
+              name={emailNewsletter ? "checksquare" : "checksquareo"}
+              size={24}
+              color="#FF5C35"
+            />
+          </TouchableOpacity>
           <Text style={styles.checkboxText}>Email Newsletter</Text>
-        </TouchableOpacity>
+        </View>
       </View>
       <View style={styles.spacing} />
       <TouchableOpacity style={styles.button} onPress={handleContinue}>
@@ -56,37 +77,37 @@ const NotificationSelection = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#FFFFFF',
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#FFFFFF",
   },
   header: {
-    alignItems: 'center',
+    alignItems: "center",
     marginTop: 100,
   },
   title: {
     fontSize: 24,
-    fontWeight: 'bold',
-    textAlign: 'center',
+    fontWeight: "bold",
+    textAlign: "center",
     marginTop: 20,
     marginBottom: 10,
   },
   subtitle: {
     fontSize: 18,
-    textAlign: 'center',
+    textAlign: "center",
     marginHorizontal: 30,
     marginBottom: 20,
   },
   checkboxContainer: {
-    alignSelf: 'stretch',
+    alignSelf: "stretch",
     marginHorizontal: 30,
-    marginVertical: 50
+    marginVertical: 50,
   },
   checkbox: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     marginVertical: 20,
-    marginLeft: 20
+    marginLeft: 20,
   },
   checkboxText: {
     fontSize: 18,
@@ -96,17 +117,17 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   button: {
-    backgroundColor: '#FF5C35',
+    backgroundColor: "#FF5C35",
     borderRadius: 7,
     paddingVertical: 10,
     paddingHorizontal: 20,
     marginBottom: 70,
   },
   buttonText: {
-    color: '#FFFFFF',
+    color: "#FFFFFF",
     fontSize: 18,
-    fontWeight: 'bold',
-    textAlign: 'center',
+    fontWeight: "bold",
+    textAlign: "center",
   },
 });
 

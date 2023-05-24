@@ -107,8 +107,8 @@ const JobPostings = () => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#FFFFFF",
-    borderRadius: 5,
+    backgroundColor: "#FCFCFC",
+    borderRadius: 20,
     paddingVertical: 20,
     marginBottom: 10,
     marginVertical: 30,
@@ -116,9 +116,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     alignSelf: "center",
     width: "90%",
-    shadowColor: "#EAF0F6",
-    shadowOpacity: 8,
-    shadowRadius: 10,
   },
   topContainer: {
     width: "85%",

@@ -10,6 +10,8 @@ import {
 import Icon from "react-native-vector-icons/Feather";
 import { useNavigation } from "@react-navigation/native";
 
+import { fetchJobPostingDescription } from "../models/jobPostingDescription";
+
 const JobPostingDescription = ({ route }) => {
   const { roleName, company, location, date, yearsOfExperience, companyLogo } =
     route.params;
@@ -21,6 +23,7 @@ const JobPostingDescription = ({ route }) => {
     navigation.goBack();
   };
 
+  // use fetchJobPostingDescription to fetch details and plugin Text
   const renderSectionContent = () => {
     switch (activeSection) {
       case "Description":
@@ -146,7 +149,7 @@ const JobPostingDescription = ({ route }) => {
 
         <View style={styles.aboutJob}>
           <Text style={styles.aboutJobTitle}>About The Job</Text>
-          <Text>
+          <Text style={styles.aboutJobText}>
             This is a full-time position offering a competitive salary
             commensurate with experience and expertise. As a Carpenter at XYZ
             Builders, you will have the opportunity to work on exciting projects
@@ -182,7 +185,7 @@ const styles = StyleSheet.create({
   },
   backButton: {
     padding: 6,
-    marginTop: 30,
+    marginTop: 40,
     marginLeft: 30,
     width: "11%",
     textAlign: "center",
@@ -191,11 +194,10 @@ const styles = StyleSheet.create({
   },
   companyLogo: {
     alignSelf: "center",
-    maxHeight: 150,
-    maxWidth: 150,
+    height: 150,
+    width: 150,
     resizeMode: "contain",
     marginBottom: 10,
-    marginTop: 30,
     backgroundColor: "#EEEDF6",
     borderRadius: 25,
   },
@@ -259,13 +261,24 @@ const styles = StyleSheet.create({
     fontFamily: "NunitoSans_400Regular",
   },
   aboutJob: {
-    paddingHorizontal: 16,
-    marginBottom: 16,
+    marginVertical: 20,
   },
   aboutJobTitle: {
-    fontSize: 18,
-    fontWeight: "bold",
-    marginBottom: 8,
+    fontSize: 20,
+    fontFamily: "NunitoSans_800ExtraBold",
+    color: "#EC8302",
+    marginBottom: 10,
+    marginLeft: 30,
+  },
+  aboutJobText: {
+    padding: 24,
+    borderRadius: 20,
+    marginBottom: 16,
+    fontSize: 16,
+    backgroundColor: "#F3F5F9",
+    width: "90%",
+    alignSelf: "center",
+    fontFamily: "NunitoSans_400Regular",
   },
   bottomBar: {
     flexDirection: "row",

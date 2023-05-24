@@ -29,8 +29,8 @@ const OTPVerificationScreen = ({ navigation, route }) => {
 
       <Text style={styles.header}>OTP Verification</Text>
       <Text style={styles.subheader}>
-        An OTP (One-Time Password) has been sent to +{countryCode} {phoneNumber}. Please
-        enter the OTP for verification process.
+        An OTP (One-Time Password) has been sent to {countryCode} {phoneNumber}.
+        Please enter the OTP for verification process.
       </Text>
 
       <OTPInput />
@@ -51,7 +51,10 @@ const OTPVerificationScreen = ({ navigation, route }) => {
         Try other login method
       </Text>
 
-      <TouchableOpacity style={styles.continueButton} onPress={() => navigation.navigate("General Info")}>
+      <TouchableOpacity
+        style={styles.continueButton}
+        onPress={() => navigation.navigate("General Info")}
+      >
         <Text style={styles.continueButtonText}>Continue</Text>
       </TouchableOpacity>
     </View>

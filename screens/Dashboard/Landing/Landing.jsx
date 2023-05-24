@@ -3,7 +3,7 @@ import {
   View,
   Text,
   TextInput,
-  TouchableOpacity,
+  StatusBar,
   ScrollView,
   StyleSheet,
 } from "react-native";
@@ -17,32 +17,41 @@ import ProfileReminder from "../../../components/Modals/ProfileReminder.jsx";
 
 const Dashboard = () => {
   const userName = "John Doe";
-  const [industries, setIndustries] = useState([]);
+  // const [industries, setIndustries] = useState([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const fetchedIndustries = await fetchIndustries();
-      if (fetchedIndustries && fetchedIndustries.length > 0) {
-        setIndustries(fetchedIndustries.slice(0, 5));
-      } else {
-        setIndustries([
-          "Substation",
-          "Software",
-          "Electrical",
-          "Civil",
-          "Management",
-        ]);
-      }
-    };
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const fetchedIndustries = await fetchIndustries();
+  //     if (fetchedIndustries && fetchedIndustries.length > 0) {
+  //       setIndustries(fetchedIndustries.slice(0, 5));
+  //     } else {
+  //       setIndustries([
+  //         "Substation",
+  //         "Software",
+  //         "Electrical",
+  //         "Civil",
+  //         "Management",
+  //       ]);
+  //     }
+  //   };
+  //   fetchData();
+  // }, []);
 
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+      <StatusBar
+        animated={true}
+        backgroundColor="#2E475D"
+        barStyle={"light-content"}
+      />
       <View style={styles.topContainer}>
         <View style={styles.headerContainer}>
           <Text style={styles.header}>Hello, {userName}</Text>
-          <Icon name="notifications-outline" size={30} />
+          <Icon
+            name="notifications-outline"
+            size={30}
+            style={{ color: "#FFFFFF" }}
+          />
         </View>
         {/* <ProfileReminder /> */}
         <View style={styles.searchContainer}>
@@ -55,7 +64,7 @@ const Dashboard = () => {
           </View>
         </View>
 
-        <Text style={styles.secondHeader}>
+        {/* <Text style={styles.secondHeader}>
           Discover your ideal{"\n"}career today
         </Text>
 
@@ -71,7 +80,7 @@ const Dashboard = () => {
               </TouchableOpacity>
             </View>
           ))}
-        </View>
+        </View> */}
       </View>
 
       <LowerSection />
@@ -82,11 +91,11 @@ const Dashboard = () => {
 const styles = StyleSheet.create({
   container: {
     height: "100%",
+    backgroundColor: "#2E475D",
     top: 0,
   },
   topContainer: {
     padding: 20,
-    backgroundColor: "#FEF4EA",
   },
   headerContainer: {
     display: "flex",
@@ -98,7 +107,7 @@ const styles = StyleSheet.create({
   },
   header: {
     fontSize: 24,
-    color: "#2E475D",
+    color: "#FEF4EA",
     alignSelf: "flex-start",
     fontFamily: "NunitoSans_800ExtraBold",
   },
@@ -113,9 +122,6 @@ const styles = StyleSheet.create({
     display: "flex",
     alignContent: "center",
     justifyContent: "center",
-    shadowColor: "black",
-    shadowOpacity: 1,
-    shadowRadius: 7,
   },
   search: {
     fontFamily: "NunitoSans_400Regular",
@@ -133,12 +139,12 @@ const styles = StyleSheet.create({
   },
   settingsContainer: {
     borderRadius: 10,
-    backgroundColor: "#2E475D",
+    backgroundColor: "#FEF4EA",
     alignItems: "center",
     justifyContent: "center",
   },
   settingsButton: {
-    color: "#FFFFFF",
+    color: "#2E475D",
     padding: 16,
   },
   secondHeader: {
@@ -174,19 +180,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: "NunitoSans_700Bold",
     textAlign: "center",
-  },
-  bottomContainer: {
-    backgroundColor: "#FBFBFB",
-    height: "100%",
-    // display: "flex",
-    // flexDirection: "column",
-    // alignItems: "center",
-  },
-  bottomSubheading: {
-    fontFamily: "NunitoSans_700Bold",
-    alignSelf: "center",
-    marginTop: 30,
-    fontSize: 20,
   },
 });
 

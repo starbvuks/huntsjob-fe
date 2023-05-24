@@ -3,20 +3,33 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableOpacity,
   TextInput,
+  ScrollView,
+  StatusBar,
 } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 import Icon2 from "react-native-vector-icons/FontAwesome5";
 
-export default function Applied() {
+import LowerSection from "./LowerSection";
+
+export default function Suggestions() {
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+      <StatusBar
+        animated={true}
+        backgroundColor="#2E475D"
+        barStyle={"light-content"}
+      />
       <View style={styles.topContainer}>
-        {/* Header, Search Bar, and Settings Button */}
         <View style={styles.headerContainer}>
-          <Text style={styles.header}>Applied Jobs</Text>
+          <Text style={styles.header}>Suggested Postings</Text>
+          <Icon
+            name="notifications-outline"
+            size={30}
+            style={{ color: "#FFFFFF" }}
+          />
         </View>
+        {/* <ProfileReminder /> */}
         <View style={styles.searchContainer}>
           <View style={styles.searchBar}>
             <TextInput style={styles.search} placeholder="Search" />
@@ -27,22 +40,20 @@ export default function Applied() {
           </View>
         </View>
       </View>
-      <View style={styles.bottomContainer}>
-        {/* Applied Job */}
-        <Text style={styles.bottomSubheading}>Jobs you Applied For</Text>
-        {/* Render Applied Jobs */}
-      </View>
-    </View>
+
+      <LowerSection />
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     height: "100%",
+    backgroundColor: "#2E475D",
+    top: 0,
   },
   topContainer: {
     padding: 20,
-    backgroundColor: "#FEF4EA",
   },
   headerContainer: {
     display: "flex",
@@ -50,12 +61,11 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     width: "100%",
-    marginTop: 60,
-    marginBottom: 20,
+    marginVertical: 20,
   },
   header: {
     fontSize: 24,
-    color: "#2E475D",
+    color: "#FEF4EA",
     alignSelf: "flex-start",
     fontFamily: "NunitoSans_800ExtraBold",
   },
@@ -69,44 +79,30 @@ const styles = StyleSheet.create({
     width: "80%",
     display: "flex",
     alignContent: "center",
-    shadowColor: "black",
-    shadowOpacity: 0.1,
-    shadowRadius: 7,
+    justifyContent: "center",
   },
   search: {
+    fontFamily: "NunitoSans_400Regular",
     backgroundColor: "#FFFFFF",
     borderRadius: 10,
-    padding: 20,
+    padding: 15,
+    alignItems: "center",
+    justifyContent: "center",
   },
   searchButton: {
     position: "absolute",
-    top: 16,
-    right: 14,
-  },
-  settingsButton: {
-    color: "#FFFFFF",
-    alignSelf: "center",
-    padding: 16,
-  },
-  bottomContainer: {
-    backgroundColor: "#FFFFFF",
-    height: "100%",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-  },
-  bottomSubheading: {
-    fontFamily: "NunitoSans_700Bold",
-    marginTop: 30,
-    fontSize: 20,
+    color: "#2E475D",
+    top: 15,
+    right: 16,
   },
   settingsContainer: {
     borderRadius: 10,
-    backgroundColor: "#2E475D",
+    backgroundColor: "#FEF4EA",
+    alignItems: "center",
+    justifyContent: "center",
   },
   settingsButton: {
-    color: "#FFFFFF",
-    alignSelf: "center",
+    color: "#2E475D",
     padding: 16,
   },
 });
