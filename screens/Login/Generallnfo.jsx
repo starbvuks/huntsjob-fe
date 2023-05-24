@@ -8,7 +8,6 @@ import {
   View,
 } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
-import * as DocumentPicker from "expo-document-picker";
 
 import BasicDetailsForm from "../../components/Forms/BasicDetailsForm";
 import ExperienceForm from "../../components/Forms/ExperienceForm";
@@ -32,10 +31,6 @@ const GeneralInfoScreen = ({ navigation }) => {
 
   const [activeTab, setActiveTab] = useState("basicDetails");
   const [animatedValue] = useState(new Animated.Value(0));
-
-  const [showDatePicker, setShowDatePicker] = useState(false);
-  const [selectedCallback, setSelectedCallback] = useState(null);
-  const [selectedType, setSelectedType] = useState("");
 
   const [domesticMonths, setDomesticMonths] = useState(null);
   const [domesticYears, setDomesticYears] = useState(null);
@@ -89,15 +84,6 @@ const GeneralInfoScreen = ({ navigation }) => {
   };
 
   const handleSubmit = () => {
-    console.log("Full Name: ", fullName);
-    console.log("Email: ", email);
-    console.log("Password: ", password);
-    console.log("Confirm Password: ", confirmPassword);
-    console.log("Domestic Experience: ", domesticExperience);
-    console.log("Abroad Experience: ", abroadExperience);
-    console.log("Nationality: ", nationality);
-    console.log("Resume: ", resume);
-
     navigation.navigate("Notification Selection");
   };
 

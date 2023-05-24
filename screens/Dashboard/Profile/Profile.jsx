@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#2E475D",
     top: 0,
+    zIndex: 1,
   },
   topContainer: {
     padding: 20,
