@@ -25,7 +25,7 @@ function Posting({ title, company, date, location }) {
   );
 }
 
-function Experience({ userId }) {
+function Experience({ userId, isEditMode }) {
   const [experience, setExperience] = useState(null);
   useEffect(() => {
     async function getExperience() {

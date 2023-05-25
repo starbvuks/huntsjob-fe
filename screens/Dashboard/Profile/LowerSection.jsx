@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Modal } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/Feather";
@@ -7,11 +7,21 @@ import ProfilePicture from "../../../components/ProfilePicture";
 import Experience from "../../../components/Details/ExperienceDetails";
 import Education from "../../../components/Details/EducationDetails";
 
+import ExperienceModal from "../../../components/Modals/ExperienceModal";
+
 const LowerSection = () => {
+  const [isExperienceModalVisible, setIsExperienceModalVisible] =
+    useState(false);
+  const [isEditMode, setIsEditMode] = useState(false);
+
   const navigation = useNavigation();
 
   const editSalaryHandler = () => {
     navigation.navigate("General Info");
+  };
+
+  const toggleEditMode = () => {
+    setIsEditMode(!isEditMode);
   };
 
   return (
@@ -19,30 +29,40 @@ const LowerSection = () => {
       <ProfilePicture />
       <Text style={styles.pfpText}>User Name</Text>
       <View style={styles.topBottonContainer}>
-
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => editSalaryHandler()}
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => editSalaryHandler()}
         >
-        <Text style={styles.buttonText}>Edit Profile</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.button2}
-        onPress={() => editSalaryHandler()}
+          <Text style={styles.buttonText}>Edit Profile</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.button2}
+          onPress={() => editSalaryHandler()}
         >
-        <Text style={styles.buttonText2}>Edit Account Details</Text>
-      </TouchableOpacity>
-        </View>
+          <Text style={styles.buttonText2}>Edit Account Details</Text>
+        </TouchableOpacity>
+      </View>
 
       <View style={styles.section}>
         <View style={styles.sectionHead}>
           <Text style={styles.sectionSubheading}>Experience</Text>
           <View style={styles.sectionHeadIcon}>
-            <Icon name="plus" size={24} />
+            <Icon
+              name="plus"
+              size={24}
+              onPress={() => setIsExperienceModalVisible(true)}
+            />
             <Icon name="edit-3" size={22} />
+            <ExperienceModal
+              visible={isExperienceModalVisible}
+              onClose={() => setIsExperienceModalVisible(false)}
+              // onSubmit={(experienceData) => {
+              //   // Handle the submission of experience data
+              // }}
+            />
           </View>
         </View>
-        <Experience userId={12345} />
+        <Experience userId={12345} isEditMode={isEditMode} />
       </View>
       <View style={styles.section}>
         <View style={styles.sectionHead}>
@@ -67,7 +87,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     marginTop: 60,
-    paddingBottom: 60
+    paddingBottom: 60,
   },
   pfpText: {
     fontFamily: "NunitoSans_700Bold",
@@ -85,7 +105,7 @@ const styles = StyleSheet.create({
   topBottonContainer: {
     flexDirection: "row",
     width: "90%",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
   },
   button: {
     paddingVertical: 10,
