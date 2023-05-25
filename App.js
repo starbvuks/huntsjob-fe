@@ -1,4 +1,4 @@
-import { StatusBar, View } from "react-native";
+import { StatusBar, View, Platform } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import {
   createStackNavigator,
@@ -6,7 +6,7 @@ import {
 } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-import MatIcon from "react-native-vector-icons/MaterialCommunityIcons";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 import * as SplashScreen from "expo-splash-screen";
 SplashScreen.preventAutoHideAsync();
@@ -28,6 +28,7 @@ import Profile from "./screens/Dashboard/Profile/Profile";
 
 import JobPostingDescription from "./components/JobPostingDescription";
 import EditProfile from "./components/Forms/EditProfile";
+import DynamicFilter from "./components/DynamicFilter";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -65,7 +66,7 @@ const customSlideFromRightIOS = {
 };
 
 const tabBarIcon = (name, color) => {
-  return <MatIcon name={name} size={24} color={color} />;
+  return <Icon name={name} size={24} color={color} />;
 };
 
 const BottomNav = () => {
@@ -73,7 +74,7 @@ const BottomNav = () => {
     <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarStyle: {
-          height: 70,
+          height: Platform.OS === "ios" ? 90 : 70,
           paddingTop: 12,
           backgroundColor: "#FCFCFC",
           borderTopWidth: 0,
@@ -102,7 +103,7 @@ const BottomNav = () => {
         },
         tabBarLabelStyle: {
           fontSize: 12,
-          marginBottom: 14, // Reduce bottom padding
+          marginBottom: Platform.OS === "ios" ? 0 : 14, // Reduce bottom padding
           fontFamily: "NunitoSans_700Bold",
         },
       })}
@@ -178,6 +179,7 @@ export default function App() {
             component={JobPostingDescription}
           />
           <Stack.Screen name="Edit Profile" component={EditProfile} />
+          <Stack.Screen name="Dynamic Filter" component={DynamicFilter} />
         </Stack.Navigator>
       </NavigationContainer>
     </View>

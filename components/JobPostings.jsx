@@ -16,6 +16,10 @@ const JobPosting = ({
 }) => {
   const navigation = useNavigation();
 
+  const handleJobSelection = (job) => {
+    onFilterActivated(job.filterValue); // Replace 'filterValue' with the appropriate property from the job object
+  };
+
   const handlePress = () => {
     navigation.navigate("Job Posting Description", {
       roleName,
@@ -98,6 +102,7 @@ const JobPostings = () => {
             date={job.date}
             yearsOfExperience={job.yearsOfExperience}
             companyLogo={job.companyLogo}
+            onJobSelection={handleJobSelection}
           />
         ))}
       </View>

@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
   },
   topContainer: {
     padding: 20,
+    marginTop: 10
   },
   headerContainer: {
     display: "flex",

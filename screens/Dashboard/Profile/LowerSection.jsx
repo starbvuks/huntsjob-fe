@@ -8,10 +8,13 @@ import Experience from "../../../components/Details/ExperienceDetails";
 import Education from "../../../components/Details/EducationDetails";
 
 import ExperienceModal from "../../../components/Modals/ExperienceModal";
+import EducationModal from "../../../components/Modals/EducationModal";
 
 const LowerSection = () => {
   const [isExperienceModalVisible, setIsExperienceModalVisible] =
     useState(false);
+  const [isEducationModalVisible, setIsEducationModalVisible] = useState(false);
+
   const [isEditMode, setIsEditMode] = useState(false);
 
   const navigation = useNavigation();
@@ -63,15 +66,28 @@ const LowerSection = () => {
           </View>
         </View>
         <Experience userId={12345} isEditMode={isEditMode} />
+        <Experience userId={12345} isEditMode={isEditMode} />
       </View>
       <View style={styles.section}>
         <View style={styles.sectionHead}>
           <Text style={styles.sectionSubheading}>Education</Text>
           <View style={styles.sectionHeadIcon}>
-            <Icon name="plus" size={24} />
+            <Icon
+              name="plus"
+              size={24}
+              onPress={() => setIsEducationModalVisible(true)}
+            />
             <Icon name="edit-3" size={22} />
+            <EducationModal
+              visible={isEducationModalVisible}
+              onClose={() => setIsEducationModalVisible(false)}
+              // onSubmit={(experienceData) => {
+              //   // Handle the submission of experience data
+              // }}
+            />
           </View>
         </View>
+        <Education userId={12345} />
         <Education userId={12345} />
       </View>
     </View>
