@@ -11,8 +11,7 @@ const EditProfile = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [domesticExperience, setdomesticExperience] = useState("");
-  const [abroadExperience, setabroadExperience] = useState("");
+
   const [nationality, setNationality] = useState("India");
   const [resume, setResume] = useState(null);
   const [resumeButtonText, setResumeButtonText] = useState("Upload Resume");
@@ -20,12 +19,16 @@ const EditProfile = () => {
   const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] =
     useState(false);
 
-  const [showExperience, setShowExperience] = useState(false);
-
   const [domesticMonths, setDomesticMonths] = useState(null);
   const [domesticYears, setDomesticYears] = useState(null);
   const [abroadMonths, setAbroadMonths] = useState(null);
   const [abroadYears, setAbroadYears] = useState(null);
+
+  const [currentSalary, setCurrentSalary] = useState("");
+  const [expectedSalary, setExpectedSalary] = useState("");
+  const [noticePeriod, setNoticePeriod] = useState("");
+  const [industry, setIndustry] = useState("");
+  const [preferredLocation, setPreferredLocation] = useState("");
 
   return (
     <ScrollView>
@@ -62,7 +65,18 @@ const EditProfile = () => {
           setResumeButtonText={setResumeButtonText}
         />
         <View style={styles.border} />
-        <EditBasicDetails />
+        <EditBasicDetails
+          currentSalary={currentSalary}
+          setCurrentSalary={setCurrentSalary}
+          expectedSalary={expectedSalary}
+          setExpectedSalary={setExpectedSalary}
+          noticePeriod={noticePeriod}
+          setNoticePeriod={setNoticePeriod}
+          industry={industry}
+          setIndustry={setIndustry}
+          preferredLocation={preferredLocation}
+          setPreferredLocation={setPreferredLocation}
+        />
         <TouchableOpacity style={styles.submitButton}>
           <Text style={styles.submitButtonText}>Submit Changes</Text>
         </TouchableOpacity>

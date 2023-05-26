@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import { View, TextInput, StyleSheet, Text } from "react-native";
 
-const BasicDetailsForm = () => {
-  const [currentSalary, setCurrentSalary] = useState("");
-  const [expectedSalary, setExpectedSalary] = useState("");
-  const [noticePeriod, setNoticePeriod] = useState("");
-  const [industry, setIndustry] = useState("");
-  const [preferredLocation, setPreferredLocation] = useState("");
-
+const BasicDetailsForm = ({
+  currentSalary,
+  setCurrentSalary,
+  expectedSalary,
+  setExpectedSalary,
+  noticePeriod,
+  setNoticePeriod,
+  industry,
+  setIndustry,
+  preferredLocation,
+  setPreferredLocation,
+}) => {
   return (
     <View style={styles.container}>
       <Text style={styles.subheading}>Current Salary</Text>

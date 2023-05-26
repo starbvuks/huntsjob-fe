@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -15,21 +15,18 @@ import LanguageProficiency from "../../Pickers/LanguageProficiency";
 import ReligionPicker from "../../Pickers/ReligionPicker";
 
 const PersonalDetails = () => {
+  const [dateOfBirth, setDateOfBirth] = useState("");
+  const [passportNumber, setPassportNumber] = useState("");
+  const [passportExpiryDate, setPassportExpiryDate] = useState("");
+
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.header}>Personal Details</Text>
       <Text style={styles.subHeading}>Date of Birth</Text>
       <TextInput
-        style={{
-          padding: 12,
-          backgroundColor: "#FFFFFF",
-          borderRadius: 5,
-          fontFamily: "NunitoSans_400Regular",
-          borderColor: "#F0F0F0",
-          borderWidth: 1.5,
-          marginTop: 10,
-          marginBottom: 20,
-        }}
+        style={styles.form}
+        value={dateOfBirth}
+        onChangeText={setDateOfBirth}
         placeholder="MM/DD/YYYY"
       />
       <View style={styles.pickerContainer}>
@@ -55,30 +52,16 @@ const PersonalDetails = () => {
 
       <Text style={styles.subHeading}>Passport Number</Text>
       <TextInput
-        style={{
-          padding: 12,
-          backgroundColor: "#FFFFFF",
-          borderRadius: 5,
-          fontFamily: "NunitoSans_400Regular",
-          borderColor: "#F0F0F0",
-          borderWidth: 1.5,
-          marginTop: 10,
-          marginBottom: 20,
-        }}
+        style={styles.form}
+        value={passportNumber}
+        onChangeText={setPassportNumber}
         placeholder="NNNNNN"
       />
       <Text style={styles.subHeading}>Passport Expiry Date</Text>
       <TextInput
-        style={{
-          padding: 12,
-          backgroundColor: "#FFFFFF",
-          borderRadius: 5,
-          fontFamily: "NunitoSans_400Regular",
-          borderColor: "#F0F0F0",
-          borderWidth: 1.5,
-          marginTop: 10,
-          marginBottom: 20,
-        }}
+        style={styles.form}
+        value={passportExpiryDate}
+        onChangeText={setPassportExpiryDate}
         placeholder="MM/DD"
       />
       <TouchableOpacity
@@ -109,6 +92,16 @@ const styles = StyleSheet.create({
   },
   pickerContainer: {
     marginBottom: 30,
+  },
+  form: {
+    padding: 12,
+    backgroundColor: "#FFFFFF",
+    borderRadius: 5,
+    fontFamily: "NunitoSans_400Regular",
+    borderColor: "#F0F0F0",
+    borderWidth: 1.5,
+    marginTop: 10,
+    marginBottom: 20,
   },
   subHeading: {
     fontSize: 18,

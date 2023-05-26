@@ -88,11 +88,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     alignContent: "center",
-<<<<<<< HEAD
     gap: 30,
-=======
-    gap: 30
->>>>>>> 2001ff154cc46e6c44a934eeeb0f31b00c844b2f
   },
   subheading: {
     fontFamily: "NunitoSans_900Black",

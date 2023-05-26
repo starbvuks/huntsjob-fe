@@ -13,13 +13,8 @@ import Icon2 from "react-native-vector-icons/FontAwesome5";
 // import { fetchIndustries } from "../../../models/industriesModel.js";
 
 import LowerSection from "./LowerSection";
-import ProfileReminder from "../../../components/Modals/ProfileReminder.jsx";
 
-<<<<<<< HEAD
 const Dashboard = ({ navigation }) => {
-=======
-const Dashboard = ({navigation}) => {
->>>>>>> 2001ff154cc46e6c44a934eeeb0f31b00c844b2f
   const userName = "John Doe";
 
   const onFilterActivated = (filterValue) => {
@@ -47,14 +42,10 @@ const Dashboard = ({navigation}) => {
             <TextInput style={styles.search} placeholder="Search" />
             <Icon name="search" size={24} style={styles.searchButton} />
           </View>
-<<<<<<< HEAD
           <TouchableOpacity
             style={styles.settingsContainer}
             onPress={() => navigation.navigate("Dynamic Filter")}
           >
-=======
-          <TouchableOpacity style={styles.settingsContainer} onPress={() => navigation.navigate("Dynamic Filter")}>
->>>>>>> 2001ff154cc46e6c44a934eeeb0f31b00c844b2f
             <Icon2 name="sliders-h" size={24} style={styles.settingsButton} />
           </TouchableOpacity>
         </View>
@@ -73,7 +64,7 @@ const styles = StyleSheet.create({
   },
   topContainer: {
     padding: 20,
-    marginTop: 10
+    marginTop: 10,
   },
   headerContainer: {
     display: "flex",
