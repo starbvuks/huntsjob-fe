@@ -27,14 +27,10 @@ import Saved from "./screens/Dashboard/Saved/Saved";
 import Profile from "./screens/Dashboard/Profile/Profile";
 
 import JobPostingDescription from "./components/JobPostingDescription";
-<<<<<<< HEAD
+
 import EditProfile from "./components/Forms/Profile/EditProfile";
 import DynamicFilter from "./components/DynamicFilter";
 import PersonalDetails from "./components/Forms/Profile/PersonalDetails";
-=======
-import EditProfile from "./components/Forms/EditProfile";
-import DynamicFilter from "./components/DynamicFilter";
->>>>>>> 2001ff154cc46e6c44a934eeeb0f31b00c844b2f
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -186,10 +182,7 @@ export default function App() {
           />
           <Stack.Screen name="Edit Profile" component={EditProfile} />
           <Stack.Screen name="Dynamic Filter" component={DynamicFilter} />
-<<<<<<< HEAD
           <Stack.Screen name="Personal Details" component={PersonalDetails} />
-=======
->>>>>>> 2001ff154cc46e6c44a934eeeb0f31b00c844b2f
         </Stack.Navigator>
       </NavigationContainer>
     </View>
