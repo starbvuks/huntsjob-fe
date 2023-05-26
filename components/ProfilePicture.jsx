@@ -70,7 +70,7 @@ const ProfilePicture = () => {
   };
 
   const takePhoto = async () => {
-    const { granted } = await Camera.requestPermissionsAsync();
+    const { granted } = await Camera.requestCameraPermissionsAsync();
     if (!granted) {
       alert("Permission to access camera is required!");
       return;
