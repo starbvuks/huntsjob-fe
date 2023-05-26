@@ -4,7 +4,7 @@ import {
   Text,
   TextInput,
   StatusBar,
-  ScrollView,
+  TouchableOpacity,
   StyleSheet,
 } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
@@ -15,7 +15,7 @@ import { fetchIndustries } from "../../../models/industriesModel.js";
 import LowerSection from "./LowerSection";
 import ProfileReminder from "../../../components/Modals/ProfileReminder.jsx";
 
-const Dashboard = () => {
+const Dashboard = ({ navigation }) => {
   const userName = "John Doe";
   // const [industries, setIndustries] = useState([]);
 
@@ -38,7 +38,7 @@ const Dashboard = () => {
   // }, []);
 
   return (
-    <View style={styles.container} >
+    <View style={styles.container}>
       <StatusBar
         animated={true}
         backgroundColor="#2E475D"
@@ -53,15 +53,18 @@ const Dashboard = () => {
             style={{ color: "#FFFFFF" }}
           />
         </View>
-        {/* <ProfileReminder /> */}
+
         <View style={styles.searchContainer}>
           <View style={styles.searchBar}>
             <TextInput style={styles.search} placeholder="Search" />
             <Icon name="search" size={24} style={styles.searchButton} />
           </View>
-          <View style={styles.settingsContainer}>
+          <TouchableOpacity
+            style={styles.settingsContainer}
+            onPress={() => navigation.navigate("Dynamic Filter")}
+          >
             <Icon2 name="sliders-h" size={24} style={styles.settingsButton} />
-          </View>
+          </TouchableOpacity>
         </View>
 
         {/* <Text style={styles.secondHeader}>

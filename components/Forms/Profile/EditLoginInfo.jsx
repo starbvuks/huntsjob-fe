@@ -10,8 +10,7 @@ import {
 } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 
-const BasicDetailsForm = ({
-  onNext,
+const EditLoginInfo = ({
   fullName,
   setFullName,
   email,
@@ -27,7 +26,6 @@ const BasicDetailsForm = ({
 }) => {
   return (
     <View style={styles.formContainer}>
-      <Text style={styles.enterDetails}>Enter your details</Text>
       <View>
         <Text style={styles.subheading}>Full Name</Text>
         <TextInput
@@ -76,9 +74,6 @@ const BasicDetailsForm = ({
           />
         </View>
       </View>
-      <TouchableOpacity onPress={onNext} style={styles.nextButton}>
-        <Text style={styles.nextButtonText}>Next</Text>
-      </TouchableOpacity>
     </View>
   );
 };
@@ -128,28 +123,14 @@ const styles = StyleSheet.create({
     bottom: 15,
   },
   buttonContainer: {
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "#FF5C35",
     paddingHorizontal: 10,
-    paddingVertical: 10,
+    paddingVertical: 12,
     borderRadius: 3,
     justifyContent: "center",
     alignItems: "center",
     marginTop: 5,
   },
-  nextButton: {
-    backgroundColor: "#FF5C35",
-    paddingHorizontal: 30,
-    paddingVertical: 12,
-    borderRadius: 5,
-    marginVertical: 10,
-    width: "100%",
-  },
-  nextButtonText: {
-    color: "#FFFFFF",
-    fontSize: 16,
-    fontWeight: "bold",
-    textAlign: "center",
-  },
 });
 
-export default BasicDetailsForm;
+export default EditLoginInfo;

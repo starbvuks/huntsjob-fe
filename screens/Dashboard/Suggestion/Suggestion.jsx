@@ -4,7 +4,7 @@ import {
   Text,
   StyleSheet,
   TextInput,
-  ScrollView,
+  TouchableOpacity,
   StatusBar,
 } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
@@ -12,7 +12,7 @@ import Icon2 from "react-native-vector-icons/FontAwesome5";
 
 import LowerSection from "./LowerSection";
 
-export default function Suggestions() {
+export default function Suggestions({ navigation }) {
   return (
     <View style={styles.container} showsVerticalScrollIndicator={false}>
       <StatusBar
@@ -35,9 +35,12 @@ export default function Suggestions() {
             <TextInput style={styles.search} placeholder="Search" />
             <Icon name="search" size={24} style={styles.searchButton} />
           </View>
-          <View style={styles.settingsContainer}>
+          <TouchableOpacity
+            style={styles.settingsContainer}
+            onPress={() => navigation.navigate("Dynamic Filter")}
+          >
             <Icon2 name="sliders-h" size={24} style={styles.settingsButton} />
-          </View>
+          </TouchableOpacity>
         </View>
       </View>
 

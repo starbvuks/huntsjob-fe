@@ -1,13 +1,19 @@
 import React from "react";
-import { View, Text, StyleSheet, TextInput, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+} from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 import Icon2 from "react-native-vector-icons/FontAwesome5";
 
 import LowerSection from "./LowerSection";
 
-export default function Applied() {
+export default function Applied({ navigation }) {
   return (
-    <View style={styles.container} >
+    <View style={styles.container}>
       <View style={styles.topContainer}>
         <View style={styles.headerContainer}>
           <Text style={styles.header}>Your Applications</Text>
@@ -23,9 +29,12 @@ export default function Applied() {
             <TextInput style={styles.search} placeholder="Search" />
             <Icon name="search" size={24} style={styles.searchButton} />
           </View>
-          <View style={styles.settingsContainer}>
+          <TouchableOpacity
+            style={styles.settingsContainer}
+            onPress={() => navigation.navigate("Dynamic Filter")}
+          >
             <Icon2 name="sliders-h" size={24} style={styles.settingsButton} />
-          </View>
+          </TouchableOpacity>
         </View>
       </View>
 

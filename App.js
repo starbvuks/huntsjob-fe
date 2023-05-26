@@ -1,4 +1,4 @@
-import { StatusBar, View } from "react-native";
+import { StatusBar, View, Platform } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import {
   createStackNavigator,
@@ -27,7 +27,9 @@ import Saved from "./screens/Dashboard/Saved/Saved";
 import Profile from "./screens/Dashboard/Profile/Profile";
 
 import JobPostingDescription from "./components/JobPostingDescription";
-import EditProfile from "./components/Forms/EditProfile";
+import EditProfile from "./components/Forms/Profile/EditProfile";
+import DynamicFilter from "./components/DynamicFilter";
+import PersonalDetails from "./components/Forms/Profile/PersonalDetails";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -73,7 +75,7 @@ const BottomNav = () => {
     <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarStyle: {
-          height: 70,
+          height: Platform.OS === "ios" ? 90 : 70,
           paddingTop: 12,
           backgroundColor: "#FCFCFC",
           borderTopWidth: 0,
@@ -178,6 +180,8 @@ export default function App() {
             component={JobPostingDescription}
           />
           <Stack.Screen name="Edit Profile" component={EditProfile} />
+          <Stack.Screen name="Dynamic Filter" component={DynamicFilter} />
+          <Stack.Screen name="Personal Details" component={PersonalDetails} />
         </Stack.Navigator>
       </NavigationContainer>
     </View>

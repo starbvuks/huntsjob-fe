@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 
-import BasicDetailsForm from "../../components/Forms/BasicDetailsForm";
+import LoginInfoForm from "../../components/Forms/LoginInfoForm";
 import ExperienceForm from "../../components/Forms/ExperienceForm";
 import GeneralTabBar from "../../components/Forms/GeneralTabBar";
 
@@ -29,7 +29,7 @@ const GeneralInfoScreen = ({ navigation }) => {
 
   const [showExperience, setShowExperience] = useState(false);
 
-  const [activeTab, setActiveTab] = useState("basicDetails");
+  const [activeTab, setActiveTab] = useState("loginInfo");
   const [animatedValue] = useState(new Animated.Value(0));
 
   const [domesticMonths, setDomesticMonths] = useState(null);
@@ -50,7 +50,7 @@ const GeneralInfoScreen = ({ navigation }) => {
   }, [showExperience]);
 
   useEffect(() => {
-    setActiveTab(showExperience ? "experience" : "basicDetails");
+    setActiveTab(showExperience ? "experience" : "loginInfo");
   }, [showExperience]);
 
   const basicDetailsFormStyle = {
@@ -100,7 +100,7 @@ const GeneralInfoScreen = ({ navigation }) => {
 
       {!showExperience ? (
         <Animated.View style={basicDetailsFormStyle}>
-          <BasicDetailsForm
+          <LoginInfoForm
             onNext={() => setShowExperience(true)}
             fullName={fullName}
             setFullName={setFullName}

@@ -6,7 +6,7 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
-  SafeAreaView,
+  ScrollView,
 } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 
@@ -14,14 +14,15 @@ const App = ({ navigation }) => {
   const [passwordVisible, setPasswordVisible] = useState(false);
 
   return (
-    <SafeAreaView style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       <Image
         source={require("../../assets/huntsjob-logo.png")}
         style={styles.logo}
       />
       <View style={styles.headerBox}>
         <Text style={styles.title}>
-          Enter your <Text style={styles.highlight}>Phone Number</Text> or{"\n"}
+          Enter your <Text style={styles.highlight}>Phone Number</Text> or
+          {"\n"}
           <Text style={styles.highlight}>Email</Text>
         </Text>
         <Text style={styles.smallText}>
@@ -69,14 +70,14 @@ const App = ({ navigation }) => {
           Forgot Password?
         </Text>
       </View>
-    </SafeAreaView>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     alignItems: "center",
+    paddingBottom: 100,
     backgroundColor: "#FFFFFF",
   },
   logo: {

@@ -16,8 +16,12 @@ const LowerSection = () => {
 
   const navigation = useNavigation();
 
-  const editSalaryHandler = () => {
-    navigation.navigate("General Info");
+  const editProfileHandler = () => {
+    navigation.navigate("Edit Profile");
+  };
+
+  const personalDetailsHandler = () => {
+    navigation.navigate("Personal Details");
   };
 
   const toggleEditMode = () => {
@@ -31,15 +35,15 @@ const LowerSection = () => {
       <View style={styles.topBottonContainer}>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => editSalaryHandler()}
+          onPress={() => editProfileHandler()}
         >
           <Text style={styles.buttonText}>Edit Profile</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button2}
-          onPress={() => editSalaryHandler()}
+          onPress={() => personalDetailsHandler()}
         >
-          <Text style={styles.buttonText2}>Edit Account Details</Text>
+          <Text style={styles.buttonText2}>Edit Personal Details</Text>
         </TouchableOpacity>
       </View>
 

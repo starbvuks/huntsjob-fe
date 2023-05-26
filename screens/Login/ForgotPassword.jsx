@@ -22,17 +22,13 @@ const ForgotPassword = ({ navigation }) => {
         style={styles.logo}
       />
       <View style={[styles.logo, { height: "33%" }]} />
-      <Text style={styles.header}>Forgot Password?</Text>
-      <Text style={styles.subheading}>
-        To reset your password, you need your email or mobile number that can be
-        authenticated
-      </Text>
-      <View style={styles.imageContainer}>
-          <Image
-            source={require("../../assets/forgot-password.png")}
-            style={styles.image}
-          />
-        </View>
+      <View style={styles.headerContainer}>
+        <Text style={styles.header}>Forgot Password?</Text>
+        <Text style={styles.subheading}>
+          To reset your password, you need your email or mobile number that can
+          be authenticated
+        </Text>
+      </View>
       <View style={styles.formContainer}>
         <Text style={styles.label}>Email</Text>
         <TextInput
@@ -68,7 +64,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     position: "absolute",
     top: 55,
-    left: 10
+    left: 10,
   },
   imageContainer: {
     width: "100%",
@@ -80,49 +76,57 @@ const styles = StyleSheet.create({
   image: {
     marginTop: 50,
   },
+  headerContainer: {
+    alignSelf: "flex-start",
+    paddingHorizontal: 28,
+    marginBottom: 20,
+    marginTop: 20,
+  },
   header: {
-    fontWeight: "bold",
+    fontFamily: "NunitoSans_800ExtraBold",
     fontSize: 24,
     marginTop: 130,
   },
   subheading: {
     fontSize: 14,
     marginTop: 10,
-    marginBottom: 20,
-    textAlign: "center",
-    paddingHorizontal: 20,
+    textAlign: "left",
+    fontFamily: "NunitoSans_400Regular",
   },
   formContainer: {
     borderRadius: 10,
-    paddingHorizontal: 20,
+    paddingHorizontal: 10,
     paddingVertical: 30,
+    marginTop: 100,
     width: "90%",
-    backgroundColor: "#F6F6F6",
   },
   label: {
     fontSize: 16,
-    fontWeight: "bold",
+    fontFamily: "NunitoSans_800ExtraBold",
     marginBottom: 5,
+    color: "#FF5C35",
   },
   input: {
-    backgroundColor: "#FFFFFF",
+    borderColor: "#F0F0F0",
+    borderWidth: 1.5,
     borderRadius: 5,
     paddingHorizontal: 10,
     paddingVertical: 15,
     marginTop: 10,
     marginBottom: 15,
+    fontFamily: "NunitoSans_400Regular",
   },
   button: {
     backgroundColor: "#FF5C35",
     borderRadius: 7,
     paddingVertical: 10,
-    marginTop: 10,
+    marginTop: 20,
     marginBottom: 20,
   },
   buttonText: {
     color: "#FFFFFF",
     fontSize: 18,
-    fontWeight: "bold",
+    fontFamily: "NunitoSans_700Bold",
     textAlign: "center",
   },
 });

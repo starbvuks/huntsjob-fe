@@ -36,6 +36,22 @@ const GeneralTabBar = ({ activeTab }) => {
           ]}
         />
       </View>
+      <View style={styles.tab}>
+        <Text
+          style={[
+            styles.tabText,
+            activeTab === "basicDetails" && styles.activeTabText,
+          ]}
+        >
+          Basic Details
+        </Text>
+        <View
+          style={[
+            styles.tabBarIndicator,
+            activeTab === "basicDetails" && styles.activeTabBarIndicator,
+          ]}
+        />
+      </View>
     </View>
   );
 };
