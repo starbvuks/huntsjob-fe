@@ -3,15 +3,14 @@ import { ScrollView, Text, StyleSheet } from "react-native";
 
 import JobPostings from "../../../components/JobPostings";
 
-const LowerSection = () => {
+const LowerSection = ({onFilterActivated}) => {
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       <Text style={styles.subheading}>Companies Actively Hiring</Text>
-      <JobPostings />
-      <JobPostings />
-      <JobPostings />
-      <JobPostings />
-      <JobPostings />
+      <JobPostings onFilterActivated={onFilterActivated} />
+      <JobPostings onFilterActivated={onFilterActivated} />
+      <JobPostings onFilterActivated={onFilterActivated} />
+      <JobPostings onFilterActivated={onFilterActivated} />
     </ScrollView>
   );
 };

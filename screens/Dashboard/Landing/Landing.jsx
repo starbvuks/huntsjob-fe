@@ -10,33 +10,21 @@ import {
 import Icon from "react-native-vector-icons/Ionicons";
 import Icon2 from "react-native-vector-icons/FontAwesome5";
 
-import { fetchIndustries } from "../../../models/industriesModel.js";
+// import { fetchIndustries } from "../../../models/industriesModel.js";
 
 import LowerSection from "./LowerSection";
 import ProfileReminder from "../../../components/Modals/ProfileReminder.jsx";
 
+<<<<<<< HEAD
 const Dashboard = ({ navigation }) => {
+=======
+const Dashboard = ({navigation}) => {
+>>>>>>> 2001ff154cc46e6c44a934eeeb0f31b00c844b2f
   const userName = "John Doe";
-  // const [industries, setIndustries] = useState([]);
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const fetchedIndustries = await fetchIndustries();
-  //     if (fetchedIndustries && fetchedIndustries.length > 0) {
-  //       setIndustries(fetchedIndustries.slice(0, 5));
-  //     } else {
-  //       setIndustries([
-  //         "Substation",
-  //         "Software",
-  //         "Electrical",
-  //         "Civil",
-  //         "Management",
-  //       ]);
-  //     }
-  //   };
-  //   fetchData();
-  // }, []);
-
+  const onFilterActivated = (filterValue) => {
+    // Update the state in the Dashboard component based on the filter value
+  };
   return (
     <View style={styles.container}>
       <StatusBar
@@ -59,34 +47,20 @@ const Dashboard = ({ navigation }) => {
             <TextInput style={styles.search} placeholder="Search" />
             <Icon name="search" size={24} style={styles.searchButton} />
           </View>
+<<<<<<< HEAD
           <TouchableOpacity
             style={styles.settingsContainer}
             onPress={() => navigation.navigate("Dynamic Filter")}
           >
+=======
+          <TouchableOpacity style={styles.settingsContainer} onPress={() => navigation.navigate("Dynamic Filter")}>
+>>>>>>> 2001ff154cc46e6c44a934eeeb0f31b00c844b2f
             <Icon2 name="sliders-h" size={24} style={styles.settingsButton} />
           </TouchableOpacity>
         </View>
-
-        {/* <Text style={styles.secondHeader}>
-          Discover your ideal{"\n"}career today
-        </Text>
-
-        <Text style={styles.subheader}>
-          50k+ options for you to consider and explore
-        </Text>
-
-        <View style={styles.industryButtonContainer}>
-          {industries.map((industry, index) => (
-            <View key={index} style={styles.industryButton}>
-              <TouchableOpacity>
-                <Text style={styles.industryButtonText}>{industry}</Text>
-              </TouchableOpacity>
-            </View>
-          ))}
-        </View> */}
       </View>
 
-      <LowerSection />
+      <LowerSection onFilterActivated={onFilterActivated} />
     </View>
   );
 };
@@ -99,6 +73,7 @@ const styles = StyleSheet.create({
   },
   topContainer: {
     padding: 20,
+    marginTop: 10
   },
   headerContainer: {
     display: "flex",
