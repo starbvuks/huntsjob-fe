@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { View, StyleSheet, Text, ScrollView } from "react-native";
 
+import Icon from "react-native-vector-icons/Ionicons";
+
 import EditLoginInfo from "./EditLoginInfo";
 import EditBasicDetails from "./EditBasicDetails";
 import EditExperienceForm from "./EditExperienceForm";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-const EditProfile = () => {
+const EditProfile = ({navigation}) => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -32,7 +34,12 @@ const EditProfile = () => {
 
   return (
     <ScrollView>
-      <Text style={styles.header}>Edit Profile Details</Text>
+      <View style={styles.header}>
+        <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
+          <Icon name="arrow-back" size={32} style={styles.backIcon} />
+        </TouchableOpacity>
+        <Text style={styles.headerText}>Edit Profile Details</Text>
+      </View>
       <View style={styles.container}>
         <EditLoginInfo
           onNext={() => setShowExperience(true)}
@@ -90,11 +97,13 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    fontSize: 28,
-    color: "#FF5C35",
     marginTop: 60,
     marginBottom: 20,
     marginLeft: 30,
+  },
+  headerText: {
+    fontSize: 28,
+    color: "#FF5C35",
     fontFamily: "NunitoSans_800ExtraBold",
   },
   border: {

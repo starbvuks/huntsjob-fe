@@ -63,7 +63,6 @@ const JobPosting = ({
 
 const JobPostings = () => {
   const [jobPostings, setJobPostings] = useState([]);
-  console.log(jobPostings);
 
   useEffect(() => {
     const fetchData = async () => {

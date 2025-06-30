@@ -36,7 +36,6 @@ const EditExperienceForm = ({
         // const fileInfo = await FileSystem.getInfoAsync(result.uri);
         const fileInfo = result.name;
         setResumeButtonText(fileInfo);
-        console.log(fileInfo);
       }
     } catch (error) {
       console.log("Error picking document", error);

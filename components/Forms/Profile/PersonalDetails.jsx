@@ -8,20 +8,28 @@ import {
   ScrollView,
 } from "react-native";
 
+import Icon from "react-native-vector-icons/Ionicons";
+import DateTimePicker from "@react-native-community/datetimepicker";
+
 import GenderPicker from "../../Pickers/GenderPicker";
 import MaritalStatusPicker from "../../Pickers/MaritalStatusPicker";
 import LanguagePicker from "../../Pickers/LanguagePicker";
 import LanguageProficiency from "../../Pickers/LanguageProficiency";
 import ReligionPicker from "../../Pickers/ReligionPicker";
 
-const PersonalDetails = () => {
+const PersonalDetails = ({navigation}) => {
   const [dateOfBirth, setDateOfBirth] = useState("");
   const [passportNumber, setPassportNumber] = useState("");
   const [passportExpiryDate, setPassportExpiryDate] = useState("");
 
   return (
     <ScrollView style={styles.container}>
-      <Text style={styles.header}>Personal Details</Text>
+      <View style={styles.header}>
+        <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
+          <Icon name="arrow-back" size={32} style={styles.backIcon} />
+        </TouchableOpacity>
+        <Text style={styles.headerText}>Personal Details</Text>
+      </View>
       <Text style={styles.subHeading}>Date of Birth</Text>
       <TextInput
         style={styles.form}
@@ -84,10 +92,12 @@ const styles = StyleSheet.create({
     padding: 40,
   },
   header: {
-    fontSize: 28,
-    color: "#FF5C35",
     marginTop: 40,
     marginBottom: 40,
+  },
+  headerText: {
+    fontSize: 28,
+    color: "#FF5C35",
     fontFamily: "NunitoSans_800ExtraBold",
   },
   pickerContainer: {

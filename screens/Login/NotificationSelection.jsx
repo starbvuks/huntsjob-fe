@@ -20,7 +20,6 @@ const NotificationSelection = ({ navigation }) => {
   };
 
   const handleContinue = () => {
-    console.log(smsNotifications, whatsappNotifications, emailNewsletter);
     navigation.navigate("Creation Success");
   };
 
